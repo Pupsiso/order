@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Test Telegram WebApps API</title>
+   <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
+
+</head>
+
+<body>
+   <p class="hint">Условия доставки</p> <!--Просто текст-подсказка для проверки-->
+   <p><input id="tel" placeholder="Номер телефона"></p>
+   <span>Способ доставки</span>
+
+   <input type="radio" name="state" id="delivery" value="Доставка">
+   <label for="delivery">Доставка</label>
+
+   <input type="radio" name="state" id="delivery" value="Заберу сам">
+   <label for="delivery">Заберу сам</label>
+
+</body>
+
+<script>
+   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+   tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
+   tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
+   tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+   tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
+   tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+   //tg.expand(); //расширяем на все окно
+   //window.Telegram.WebApp.expand()
+
+   tg.MainButton.show() //Показать окно
+   let tel = document.getElementById("tel");
+   let deliv = document.getElementById("delivery");
+
+   Telegram.WebApp.onEvent('mainButtonClicked', function(){
+
+      let data = tel.value + deliv.value
+      tg.sendData(data);
+
+      //при клике на основную кнопку отправляем данные в строковом виде
+   });
+
+</script>
+</html>
