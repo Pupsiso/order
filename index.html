@@ -6,21 +6,63 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Telegram WebApps API</title>
    <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
 
 </head>
 
 <body>
    <p class="hint">Условия доставки</p> <!--Просто текст-подсказка для проверки-->
-   <p><input id="tel" placeholder="Номер телефона"></p>
-   <span>Способ доставки</span>
+   <form action='' class='form'>
+  <p class='field required'>
+    <label class='label required' for='name'>Улица доставки</label>
+    <input class='text-input' id='name' name='name' required type='text' value=''>
+  </p>
 
-   <input type="radio" name="state" id="delivery" value="Доставка">
-   <label for="delivery">Доставка</label>
+  <p class='field half'>
+    <label class='label' for='email'>Кв./офис</label>
+    <input class='text-input' id='email' name='email' required type='email'>
+  </p>
+  <p class='field half'>
+    <label class='label' for='email'>Домофон</label>
+    <input class='text-input' id='email' name='email' required type='email'>
+  </p>
+  <p class='field half'>
+    <label class='label' for='email'>Подъезд</label>
+    <input class='text-input' id='email' name='email' required type='email'>
+  </p>
+  <p class='field half'>
+    <label class='label' for='email'>Этаж</label>
+    <input class='text-input' id='email' name='email' required type='email'>
+  </p>
 
-   <input type="radio" name="state" id="pickup" value="Заберу сам">
-   <label for="delivery">Заберу сам</label>
+  <p class='field required half'>
+    <label class='label' for='phone'>Телефон</label>
+    <input class='text-input' id='phone' name='phone' type='phone'>
+  </p>
+  <div class='field required'>
+    <label class='label'>Способ доставки</label>
+    <ul class='options'>
+      <li class='option'>
+        <input class='option-input' id='option-0' name='option' type='radio' value='0'>
+        <label class='option-label' for='option-0'>Доставка</label>
+      </li>
+      <li class='option'>
+        <input class='option-input' id='option-1' name='option' type='radio' value='1'>
+        <label class='option-label' for='option-1'>Заберу сам</label>
+      </li>
+    </ul>
+  </div>
+  <p class='field'>
+    <label class='label' for='about'>Комментарий к заказу</label>
+    <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
+  </p>
+</form>
 
 </body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.customSelect/0.5.1/jquery.customSelect.min.js'></script>
+<script src='https://codepen.io/mican/pen/XgRmNr.js'></script>
 
 <script>
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
