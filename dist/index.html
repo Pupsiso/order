@@ -52,25 +52,22 @@
       <div class="col-sm">
         <p class="field required">
           <label class="label required" for="name">Кв./офис</label>
-          <input class="text-input" id="name" name="name" required="" type="text" value="">
+          <input class="text-input" id="flat" name="name" required="" type="text" value="">
         </p>
 
         <p class="field required">
             <label class="label required" for="name">Этаж</label>
-            <input class="text-input" id="name" name="name" required="" type="text" value="">
+            <input class="text-input" id="floor" name="name" required="" type="text" value="">
         </p>
-
-
-
       </div>
       <div class="col-sm">
         <p class="field required">
           <label class="label required" for="name">Подъезд</label>
-          <input class="text-input" id="name" name="name" required="" type="text" value="">
+          <input class="text-input" id="entrance" name="name" required="" type="text" value="">
         </p>
          <p class="field required">
           <label class="label required" for="name">Домофон</label>
-          <input class="text-input" id="name" name="name" required="" type="text" value="">
+          <input class="text-input" id="intercom" name="name" required="" type="text" value="">
         </p>
 
       </div>
@@ -79,7 +76,7 @@
 
   <p class='field required half'>
     <label class='label' for='phone'>Телефон</label>
-    <input class='text-input' id='phone' name='phone' type='phone'>
+    <input class='text-input' id='phone' name='phone' type='tel'>
   </p>
   <p class='field'>
     <label class='label' for='about'>Комментарий к заказу</label>
@@ -89,6 +86,7 @@
   <p class='field half'>
     <input class='button' type='submit' value='Send'>
   </p>
+
 </form>
 <!-- partial -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -113,6 +111,40 @@ $("#address").suggestions({
     restrict_value: true
 });
 
+let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+   tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
+   tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
+   tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+   tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
+   tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+   //tg.expand(); //расширяем на все окно
+   //window.Telegram.WebApp.expand()
+
+   tg.MainButton.show() //Показать окно
+
+    //address - Улица
+    //flat - Кв./офис
+    //floor - Этаж
+    //entrance - Подъезд
+    //Intercom - Домофон
+    //phone - Телефон
+    //about - Комментарий
+   let address = document.getElementById("address");
+   let flat = document.getElementById("flat");
+   let floor = document.getElementById("floor");
+   let entrance = document.getElementById("entrance");
+   let intercom = document.getElementById("intercom");
+   let phone = document.getElementById("phone");
+   let about = document.getElementById("about");
+
+
+   Telegram.WebApp.onEvent('mainButtonClicked', function(){
+
+      let data = address.value + flat.value + floor.value + entrance.value + intercom.value + phone.value + about.value
+      tg.sendData(data);
+
+      //при клике на основную кнопку отправляем данные в строковом виде
+   });
 </script>
 
 </body>
