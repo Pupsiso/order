@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram &amp; Способ доставки</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
+  <style>
+  input {
+    font-size: 16px;
+    padding: 4px;
+  }
+  .suggestions-suggestions {
+    color: white;
+    border-style: solid;
+  }
+
+</style>
+</head>
+<body>
+
+
+
+<!-- partial:index.partial.html -->
+<form action='' class='form'>
+    <div class='field required'>
+    <label class='label'>Способ доставки</label>
+    <ul class='options'>
+      <li class='option'>
+        <input class='option-input' id='option-0' name='option' type='radio' value='0'>
+        <label class='option-label' for='option-0'>Доставка</label>
+      </li>
+      <li class='option'>
+        <input class='option-input' id='option-1' name='option' type='radio' value='1'>
+        <label class='option-label' for='option-1'>Заберу сам</label>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container">
+      <div class="row">
+        <p class="field required">
+          <label class="label required" for="name">Улица</label>
+          <input class="text-input" id="address" name="address" placeholder="Введите улицу" required="" ="ss" type="text" value="">
+        </p>
+      </div>
+  </div>
+
+   <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <p class="field required">
+          <label class="label required" for="name">Кв./офис</label>
+          <input class="text-input" id="name" name="name" required="" type="text" value="">
+        </p>
+
+        <p class="field required">
+            <label class="label required" for="name">Этаж</label>
+            <input class="text-input" id="name" name="name" required="" type="text" value="">
+        </p>
+
+
+
+      </div>
+      <div class="col-sm">
+        <p class="field required">
+          <label class="label required" for="name">Подъезд</label>
+          <input class="text-input" id="name" name="name" required="" type="text" value="">
+        </p>
+         <p class="field required">
+          <label class="label required" for="name">Домофон</label>
+          <input class="text-input" id="name" name="name" required="" type="text" value="">
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <p class='field required half'>
+    <label class='label' for='phone'>Телефон</label>
+    <input class='text-input' id='phone' name='phone' type='phone'>
+  </p>
+  <p class='field'>
+    <label class='label' for='about'>Комментарий к заказу</label>
+    <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
+  </p>
+
+  <p class='field half'>
+    <input class='button' type='submit' value='Send'>
+  </p>
+</form>
+<!-- partial -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+
+
+<script>
+
+$("#address").suggestions({
+    token: "ae88835bdbe058921eb8012bc6b79a7a7e606ac9",
+    type: "ADDRESS",
+    constraints: {
+      "locations": [{
+        "region": "Тюменская",
+        "city": "Тюмень"
+      }]
+    },
+    // в списке подсказок не показываем область
+    restrict_value: true
+});
+
+</script>
+
+</body>
+</html>
