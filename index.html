@@ -112,15 +112,14 @@ $("#address").suggestions({
 });
 
 let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-   tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
-   tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
-   tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
-   tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
-   tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
-   //tg.expand(); //расширяем на все окно
+tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
+tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
+tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
+tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+tg.expand(); //расширяем на все окно
    //window.Telegram.WebApp.expand()
-
-   tg.MainButton.show() //Показать окно
+tg.MainButton.show() //Показать окно
 
     //address - Улица
     //flat - Кв./офис
@@ -129,22 +128,19 @@ let tg = window.Telegram.WebApp; //получаем объект webapp теле
     //Intercom - Домофон
     //phone - Телефон
     //about - Комментарий
-   let address = document.getElementById("address");
-   let flat = document.getElementById("flat");
-   let floor = document.getElementById("floor");
-   let entrance = document.getElementById("entrance");
-   let intercom = document.getElementById("intercom");
-   let phone = document.getElementById("phone");
-   let about = document.getElementById("about");
+let address = document.getElementById("address");
+let flat = document.getElementById("flat");
+let floor = document.getElementById("floor");
+let entrance = document.getElementById("entrance");
+let intercom = document.getElementById("intercom");
+let phone = document.getElementById("phone");
+let about = document.getElementById("about");
 
-
-   Telegram.WebApp.onEvent('mainButtonClicked', function(){
-
-      let data = address.value + flat.value + floor.value + entrance.value + intercom.value + phone.value + about.value
-      tg.sendData(data);
-
-      //при клике на основную кнопку отправляем данные в строковом виде
-   });
+Telegram.WebApp.onEvent('mainButtonClicked', function(){
+    let data = address.value + flat.value + floor.value + entrance.value + intercom.value + phone.value + about.value
+    tg.sendData(data);
+    //при клике на основную кнопку отправляем данные в строковом виде
+    });
 </script>
 
 </body>
