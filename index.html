@@ -1,22 +1,211 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="ru" >
 <head>
   <meta charset="UTF-8">
   <title>Telegram &amp; Способ доставки</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
   <style>
-  input {
-    font-size: 16px;
-    padding: 4px;
-  }
-  .suggestions-suggestions {
-    color: white;
-    border-style: solid;
-  }
+    @subtext-color: #777;
+    @suggestions-bg-color: #fff;
+    @subtext-label-color: #f5f5f5;
+
+    .box-sizing(@sizing: border-box) {
+        -ms-box-sizing: @sizing;
+        -moz-box-sizing: @sizing;
+        -webkit-box-sizing: @sizing;
+        box-sizing: @sizing;
+    }
+
+    .rounded(@radius) {
+        -webkit-border-radius: @radius;
+        -moz-border-radius: @radius;
+        border-radius: @radius;
+    }
+
+    .suggestions-nowrap {
+        white-space: nowrap;
+    }
+
+    /**
+     * Основной INPUT
+     */
+    .suggestions-input {
+        // IE9 can't determine border-style until it is specified in stylesheets
+        //  border: 1px solid grey;
+        .box-sizing();
+        width: 100%;
+
+        &::-ms-clear {
+            display: none;
+        }
+    }
+
+    .suggestions-wrapper {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        vertical-align: top;
+
+        //Prevent font scaling in landscape while allowing user zoom
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /**
+     * Выпадающий блок с найденными подсказками
+     */
+    .suggestions-suggestions {
+        background: @suggestions-bg-color;
+        border: 1px solid #999;
+        .box-sizing;
+        cursor: default;
+        color: white;
+        left: 0;
+        min-width: 100%;
+        position: static;
+        z-index: 9999;
+
+        //Prevent font scaling in landscape while allowing user zoom
+        -webkit-text-size-adjust: 100%;
+
+        strong {
+            font-weight: normal;
+            color: #3399ff;
+        }
+
+        &.suggestions-mobile {
+            border-style: none;
+
+            .suggestions-suggestion {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    }
+
+    /**
+     * Контейнер для одной подсказки
+     */
+    .suggestions-suggestion {
+        padding: 4px 4px;
+        overflow: hidden;
+
+        &:hover {
+            background: darken(@suggestions-bg-color, 3%);
+        }
+    }
+
+    /**
+     * Выбранная (активная) подсказка
+     */
+    .suggestions-selected {
+        background: darken(@suggestions-bg-color, 6%);
+
+        &:hover {
+            background: darken(@suggestions-bg-color, 6%);
+        }
+    }
+
+    /**
+     * Информационный блок в верхней части выпадашки с подсказками
+     */
+    .suggestions-hint {
+        padding: 4px 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        color: @subtext-color;
+        font-size: 85%;
+        line-height: 20px;
+    }
+
+    /**
+     * Дополнительный текст в подсказке, который идет второй строкой
+     */
+    .suggestions-subtext {
+        color: @subtext-color;
+    }
+
+    /**
+     * Размещает дополнительный текст в одну строку с основным текстом подсказки
+     */
+    .suggestions-subtext_inline {
+        display: inline-block;
+        min-width: 6em;
+        vertical-align: bottom;
+        margin: 0 0.5em 0 0;
+    }
+
+    /**
+     * Разделитель нескольких дополнительных текстов
+     */
+    .suggestions-subtext-delimiter {
+        display: inline-block;
+        width: 2px;
+    }
+
+    /**
+     * Выделяет подсказку
+     */
+    .suggestions-subtext_label {
+        margin: 0 0 0 0.25em;
+        .rounded(3px);
+        padding: 0 3px;
+
+        background: @subtext-label-color;
+        font-size: 85%;
+    }
+
+    .suggestions-value {
+        &[data-suggestion-status="LIQUIDATED"] {
+            position: relative;
+
+            &:after {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+
+                border-top: 1px solid rgba(0, 0, 0, 0.4);
+
+                content: "";
+            }
+        }
+    }
+
+    /**
+     * Промо-блок
+     */
+    .suggestions-promo {
+        font-size: 85%;
+        display: none;
+        color: @subtext-color;
+        padding: 4px;
+        text-align: center;
+        a {
+            color: @subtext-color;
+            display: block;
+            filter: grayscale(100%);
+            line-height: 20px;
+            text-decoration: none;
+        }
+        a:hover {
+            filter: grayscale(0);
+        }
+        svg {
+            height: 20px;
+            vertical-align: bottom;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .suggestions-promo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: left;
+        }
+    }
 
 </style>
 </head>
@@ -30,11 +219,11 @@
     <label class='label'>Способ доставки</label>
     <ul class='options'>
       <li class='option'>
-        <input class='option-input' id='option-0' name='option' type='radio' value='0'>
+        <input class='option-input' id='option-0' name='option' type='radio' required="" value='0'>
         <label class='option-label' for='option-0'>Доставка</label>
       </li>
       <li class='option'>
-        <input class='option-input' id='option-1' name='option' type='radio' value='1'>
+        <input class='option-input' id='option-1' name='option' type='radio' required="" value='1'>
         <label class='option-label' for='option-1'>Заберу сам</label>
       </li>
     </ul>
@@ -44,7 +233,11 @@
       <div class="row">
         <p class="field required">
           <label class="label required" for="name">Улица</label>
-          <input class="text-input" id="address" name="address" placeholder="Введите улицу" required="" ="ss" type="text" value="">
+          <input class="text-input" id="street" name="street" placeholder="Введите улицу" required="Введите улицу" type="text" value="">
+        </p>
+          <p class="field required">
+          <label class="label required" for="name">Дом</label>
+          <input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value="">
         </p>
       </div>
   </div>
@@ -52,22 +245,22 @@
    <div class="container">
     <div class="row">
       <div class="col-sm">
-        <p class="field required">
+        <p class="field">
           <label class="label required" for="name">Кв./офис</label>
           <input class="text-input" id="flat" name="name" required="" type="text" value="">
         </p>
 
-        <p class="field required">
+        <p class="field ">
             <label class="label required" for="name">Этаж</label>
             <input class="text-input" id="floor" name="name" required="" type="text" value="">
         </p>
       </div>
       <div class="col-sm">
-        <p class="field required">
+        <p class="field ">
           <label class="label required" for="name">Подъезд</label>
           <input class="text-input" id="entrance" name="name" required="" type="text" value="">
         </p>
-         <p class="field required">
+         <p class="field ">
           <label class="label required" for="name">Домофон</label>
           <input class="text-input" id="intercom" name="name" required="" type="text" value="">
         </p>
@@ -99,19 +292,40 @@
 
 
 <script>
+var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
+var type  = "ADDRESS";
 
-$("#address").suggestions({
-    token: "ae88835bdbe058921eb8012bc6b79a7a7e606ac9",
-    type: "ADDRESS",
-    constraints: {
+var $street = $("#street");
+var $house  = $("#house");
+
+// улица
+$street.suggestions({
+  token: token,
+  type: type,
+  hint: 'Выберите вариант или продолжите ввод',
+  bounds: "street",
+  constraints: {
       "locations": [{
         "region": "Тюменская",
         "city": "Тюмень"
       }]
     },
-    // в списке подсказок не показываем область
-    restrict_value: true
+  count: 15,
+  restrict_value: true
 });
+
+// дом
+$house.suggestions({
+  token: token,
+  type: type,
+  hint: 'Выберите вариант или продолжите ввод',
+  noSuggestionsHint: false,
+  bounds: "house",
+  constraints: $street
+});
+
+
+
 
 let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
@@ -123,14 +337,17 @@ tg.expand(); //расширяем на все окно
    //window.Telegram.WebApp.expand()
 tg.MainButton.show() //Показать окно
 
-    //address - Улица
-    //flat - Кв./офис
-    //floor - Этаж
-    //entrance - Подъезд
-    //Intercom - Домофон
-    //phone - Телефон
-    //about - Комментарий
-let address = document.getElementById("address");
+//street - Улица
+//house - номер дома
+//flat - Кв./офис
+//floor - Этаж
+//entrance - Подъезд
+//Intercom - Домофон
+//phone - Телефон
+//about - Комментарий
+
+let street = document.getElementById("street");
+let house = document.getElementById("house");
 let flat = document.getElementById("flat");
 let floor = document.getElementById("floor");
 let entrance = document.getElementById("entrance");
@@ -138,9 +355,23 @@ let intercom = document.getElementById("intercom");
 let phone = document.getElementById("phone");
 let about = document.getElementById("about");
 
+let test_json = document.getElementsByTagName("submit");
+
+console.log(test_json)
+
 Telegram.WebApp.onEvent('mainButtonClicked', function(){
-    let data = address.value + flat.value + floor.value + entrance.value + intercom.value + phone.value + about.value
-    tg.sendData(data);
+    const data = {
+        street.value,
+        house.value,
+        flat.value,
+        floor.value,
+        entrance.value,
+        intercom.value,
+        phone.value,
+        about.value
+    }
+
+    tg.sendData(JSON.stringify(data));
     //при клике на основную кнопку отправляем данные в строковом виде
     });
 </script>
