@@ -355,13 +355,9 @@
     let phone = document.getElementById("phone").value;
     let about = document.getElementById("about").value;
 
-    let test_json = document.getElementsByTagName("submit");
-
-    console.log(test_json)
-
     Telegram.WebApp.onEvent('mainButtonClicked', function(){
 
-        const data = {
+        let data = {
             street,
             house,
             flat,
