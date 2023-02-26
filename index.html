@@ -292,84 +292,85 @@
 
 
 <script>
-var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
-var type  = "ADDRESS";
+    var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
+    var type  = "ADDRESS";
 
-var $street = $("#street");
-var $house  = $("#house");
+    var $street = $("#street");
+    var $house  = $("#house");
 
-// улица
-$street.suggestions({
-  token: token,
-  type: type,
-  hint: 'Выберите вариант или продолжите ввод',
-  bounds: "street",
-  constraints: {
-      "locations": [{
-        "region": "Тюменская",
-        "city": "Тюмень"
-      }]
-    },
-  count: 15,
-  restrict_value: true
-});
+    // улица
+    $street.suggestions({
+      token: token,
+      type: type,
+      hint: 'Выберите вариант или продолжите ввод',
+      bounds: "street",
+      constraints: {
+          "locations": [{
+            "region": "Тюменская",
+            "city": "Тюмень"
+          }]
+        },
+      count: 15,
+      restrict_value: true
+    });
 
-// дом
-$house.suggestions({
-  token: token,
-  type: type,
-  hint: 'Выберите вариант или продолжите ввод',
-  noSuggestionsHint: false,
-  bounds: "house",
-  constraints: $street
-});
-
-
+    // дом
+    $house.suggestions({
+      token: token,
+      type: type,
+      hint: 'Выберите вариант или продолжите ввод',
+      noSuggestionsHint: false,
+      bounds: "house",
+      constraints: $street
+    });
 
 
-let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
-tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
-tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
-tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
-tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
-tg.expand(); //расширяем на все окно
-   //window.Telegram.WebApp.expand()
-tg.MainButton.show() //Показать окно
 
-//street - Улица
-//house - номер дома
-//flat - Кв./офис
-//floor - Этаж
-//entrance - Подъезд
-//Intercom - Домофон
-//phone - Телефон
-//about - Комментарий
 
-let street = document.getElementById("street");
-let house = document.getElementById("house");
-let flat = document.getElementById("flat");
-let floor = document.getElementById("floor");
-let entrance = document.getElementById("entrance");
-let intercom = document.getElementById("intercom");
-let phone = document.getElementById("phone");
-let about = document.getElementById("about");
+    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+    tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
+    tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
+    tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+    tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
+    tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+    tg.expand(); //расширяем на все окно
+       //window.Telegram.WebApp.expand()
+    tg.MainButton.show() //Показать окно
 
-let test_json = document.getElementsByTagName("submit");
+    //street - Улица
+    //house - номер дома
+    //flat - Кв./офис
+    //floor - Этаж
+    //entrance - Подъезд
+    //Intercom - Домофон
+    //phone - Телефон
+    //about - Комментарий
 
-console.log(test_json)
+    let street = document.getElementById("street").value;
+    let house = document.getElementById("house").value;
+    let flat = document.getElementById("flat").value;
+    let floor = document.getElementById("floor").value;
+    let entrance = document.getElementById("entrance").value;
+    let intercom = document.getElementById("intercom").value;
+    let phone = document.getElementById("phone").value;
+    let about = document.getElementById("about").value;
 
-Telegram.WebApp.onEvent('mainButtonClicked', function(){
-    const data = {
-        street.value,
-        house.value,
-        flat.value,
-        floor.value,
-        entrance.value,
-        intercom.value,
-        phone.value,
-        about.value
-    }
+    let test_json = document.getElementsByTagName("submit");
+
+    console.log(test_json)
+
+    Telegram.WebApp.onEvent('mainButtonClicked', function(){
+
+        const data = {
+            street,
+            house,
+            flat,
+            floor,
+            entrance,
+            intercom,
+            phone,
+            about
+        }
 
     tg.sendData(JSON.stringify(data));
     //при клике на основную кнопку отправляем данные в строковом виде
