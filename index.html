@@ -214,7 +214,7 @@
 
 
 <!-- partial:index.partial.html -->
-<form action='' class='form'>
+<form action='' class='form' id="add-from" onsubmit="return false">
     <div class='field required'>
     <label class='label'>Способ доставки</label>
     <ul class='options'>
@@ -279,7 +279,7 @@
   </p>
 
   <p class='field half'>
-    <input class='button' type='submit' value='Send'>
+    <input class='button' type='submit' value='Отправить'>
   </p>
 
 </form>
@@ -346,18 +346,25 @@
     //phone - Телефон
     //about - Комментарий
 
-    let street = document.getElementById("street").value;
-    let house = document.getElementById("house").value;
-    let flat = document.getElementById("flat").value;
-    let floor = document.getElementById("floor").value;
-    let entrance = document.getElementById("entrance").value;
-    let intercom = document.getElementById("intercom").value;
-    let phone = document.getElementById("phone").value;
-    let about = document.getElementById("about").value;
 
+    //тестовая кнопка отправки
+    document.getElementById('add-from').addEventListener('submit', function(event){
+
+    })
+
+
+    //tg отправка формы
     Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        let street = document.getElementById("street").value;
+        let house = document.getElementById("house").value;
+        let flat = document.getElementById("flat").value;
+        let floor = document.getElementById("floor").value;
+        let entrance = document.getElementById("entrance").value;
+        let intercom = document.getElementById("intercom").value;
+        let phone = document.getElementById("phone").value;
+        let about = document.getElementById("about").value;
 
-        let data = {
+        const data = {
             street,
             house,
             flat,
