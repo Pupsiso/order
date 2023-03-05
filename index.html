@@ -208,70 +208,77 @@
     }
 
 </style>
+    <style>
+    .delivery {
+        display: none;
+    }
+    #option-0:checked~.l-1,
+    #option-1:checked~.l-2 {
+        display: block;
+    }
+
+</style>
 </head>
 <body>
 
 
-
-<!-- partial:index.partial.html -->
 <form action='' class='form' id="add-from" onsubmit="return false">
+
     <div class='field required'>
-    <label class='label'>Способ доставки</label>
-    <ul class='options'>
-      <li class='option'>
-        <input class='option-input' id='option-0' name='option' type='radio' required="" value='0'>
+        <label class='label'>Способ доставки</label>
+        <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
         <label class='option-label' for='option-0'>Доставка</label>
-      </li>
-      <li class='option'>
-        <input class='option-input' id='option-1' name='option' type='radio' required="" value='1'>
+        <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
         <label class='option-label' for='option-1'>Заберу сам</label>
-      </li>
-    </ul>
-  </div>
 
-  <div class="container">
-      <div class="row">
-        <p class="field required">
-          <label class="label required" for="name">Улица</label>
-          <input class="text-input" id="street" name="street" placeholder="Введите улицу" required="Введите улицу" type="text" value="">
-        </p>
-          <p class="field required">
-          <label class="label required" for="name">Дом</label>
-          <input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value="">
-        </p>
-      </div>
-  </div>
+        <div class="delivery l-1">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm">
+                <p class="required">
+                  <label class="label required"  for="name">Улица</label>
+                  <input class="text-input" id="street" name="street" placeholder="Введите улицу" required="" type="text" value="">
+                </p></div>
+                  <p class="required">
+                  <label class="label required" for="name">Дом</label>
+                  <input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value="">
+                </p>
+              </div>
+          </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <p class="field">
+                  <label class="label required" for="name">Кв./офис</label>
+                  <input class="text-input" id="flat" name="name" type="text" value="">
+                </p>
 
-   <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <p class="field">
-          <label class="label required" for="name">Кв./офис</label>
-          <input class="text-input" id="flat" name="name" required="" type="text" value="">
-        </p>
+                <p class="field ">
+                    <label class="label required" for="name">Этаж</label>
+                    <input class="text-input" id="floor" name="name"  type="text" value="">
+                </p>
+              </div>
+              <div class="col-sm">
+                <p class="field ">
+                  <label class="label required" for="name">Подъезд</label>
+                  <input class="text-input" id="entrance" name="name"  type="text" value="">
+                </p>
+                 <p class="field ">
+                  <label class="label required" for="name">Домофон</label>
+                  <input class="text-input" id="intercom" name="name" type="text" value="">
+                </p>
 
-        <p class="field ">
-            <label class="label required" for="name">Этаж</label>
-            <input class="text-input" id="floor" name="name" required="" type="text" value="">
-        </p>
-      </div>
-      <div class="col-sm">
-        <p class="field ">
-          <label class="label required" for="name">Подъезд</label>
-          <input class="text-input" id="entrance" name="name" required="" type="text" value="">
-        </p>
-         <p class="field ">
-          <label class="label required" for="name">Домофон</label>
-          <input class="text-input" id="intercom" name="name" required="" type="text" value="">
-        </p>
-
-      </div>
+              </div>
+            </div>
+        </div>
     </div>
   </div>
 
+
+
   <p class='field required half'>
     <label class='label' for='phone'>Телефон</label>
-    <input class='text-input' id='phone' name='phone' type='tel'>
+    <input class='text-input' id='phone' name='phone' required="" type='tel'>
   </p>
   <p class='field'>
     <label class='label' for='about'>Комментарий к заказу</label>
@@ -292,40 +299,7 @@
 
 
 <script>
-    var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
-    var type  = "ADDRESS";
-
-    var $street = $("#street");
-    var $house  = $("#house");
-
-    // улица
-    $street.suggestions({
-      token: token,
-      type: type,
-      hint: 'Выберите вариант или продолжите ввод',
-      bounds: "street",
-      constraints: {
-          "locations": [{
-            "region": "Тюменская",
-            "city": "Тюмень"
-          }]
-        },
-      count: 15,
-      restrict_value: true
-    });
-
-    // дом
-    $house.suggestions({
-      token: token,
-      type: type,
-      hint: 'Выберите вариант или продолжите ввод',
-      noSuggestionsHint: false,
-      bounds: "house",
-      constraints: $street
-    });
-
-
-
+    //Telegram
 
     let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
     tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
@@ -334,27 +308,76 @@
     tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
     tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
     tg.expand(); //расширяем на все окно
-       //window.Telegram.WebApp.expand()
     tg.MainButton.show() //Показать окно
 
-    //street - Улица
-    //house - номер дома
-    //flat - Кв./офис
-    //floor - Этаж
-    //entrance - Подъезд
-    //Intercom - Домофон
-    //phone - Телефон
-    //about - Комментарий
+    document.querySelector('.option-input').addEventListener('click', () => {
+
+        //Подсказки Api https://dadata.ru/profile/#subscriptions
+
+        var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
+        var type  = "ADDRESS";
+        var $street = $("#street");
+        var $house  = $("#house");
+        // улица
+        $street.suggestions({
+          token: token,
+          type: type,
+          hint: 'Выберите вариант или продолжите ввод',
+          bounds: "street",
+          constraints: {
+              "locations": [{
+                "region": "Тюменская",
+                "city": "Тюмень"
+              }]
+            },
+          count: 15,
+          restrict_value: true
+        });
+
+        // дом
+        $house.suggestions({
+          token: token,
+          type: type,
+          hint: 'Выберите вариант или продолжите ввод',
+          noSuggestionsHint: false,
+          bounds: "house",
+          constraints: $street
+        });
+        console.log($street.suggestions())
+
+    });
+
 
 
     //тестовая кнопка отправки
     document.getElementById('add-from').addEventListener('submit', function(event){
 
+        let radio = document.querySelectorAll('.option-input');
+        for (let i = 0; i < radio.length; i++) {
+            if (radio[i].checked) {
+                dostavka = radio[i].value;
+                break;
+            }
+        }
+        console.log(dostavka)
+
+        //получить kladr_id"72000001000010500"
     })
 
-
+    //street - Улица //house - номер дома //flat - Кв./офис //floor - Этаж
+    //entrance - Подъезд  //Intercom - Домофон //phone - Телефон //about - Комментарий
     //tg отправка формы
     Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        let radio = document.querySelectorAll('.option-input');
+        for (let i = 0; i < radio.length; i++) {
+            if (radio[i].checked) {
+                dostavka = radio[i].value;
+                break;
+            }
+        }
+
+
+
         let street = document.getElementById("street").value;
         let house = document.getElementById("house").value;
         let flat = document.getElementById("flat").value;
@@ -365,6 +388,7 @@
         let about = document.getElementById("about").value;
 
         const data = {
+            dostavka,
             street,
             house,
             flat,
