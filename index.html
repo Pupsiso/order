@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru" >
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>Telegram &amp; Способ доставки</title>
+    <title>Telegram &amp; Способ доставки</title>
     <meta name="theme-color" content="#000000"/>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
-  <script>window.Telegram.WebApp.ready()</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
-  <style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
+    <script>window.Telegram.WebApp.ready()</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+    <style>
     @subtext-color: #777;
     @suggestions-bg-color: #fff;
     @subtext-label-color: #f5f5f5;
@@ -223,68 +227,61 @@
 </head>
 <body>
 
+<script>
+    //required - нужно заполнить данные
+    //field
+</script>
 
-<form action='' class='form' id="add-from" onsubmit="return false">
 
-    <div class='field required'>
-        <label class='label'>Способ доставки</label>
-        <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
-        <label class='option-label' for='option-0'>Доставка</label>
-        <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
-        <label class='option-label' for='option-1'>Заберу сам</label>
+<form action='' class='form' id="add-from" onsubmit="return false"><p class='field'><input class='button' type='submit' value='Отправить'></p>
+
+    <div class="field">
+            <label class='label required'>Способ доставки</label>
+            <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
+            <label class='option-label' for='option-0'>Доставка</label>
+            <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
+            <label class='option-label' for='option-1'>Заберу сам</label>
 
         <div class="delivery l-1">
-                <p class="field required">
-                  <label class="label required"  for="name">Улица</label>
-                  <input class="text-input" id="street" name="street" placeholder="Введите улицу" required="" type="text" value="">
-                </p>
-                  <p class="field required">
-                  <label class="label required" for="name">Дом</label>
-                  <input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value="">
-                </p>
-                <p class="field">
-                  <label class="label required" for="name">Кв./офис</label>
-                  <input class="text-input" id="flat" name="name" type="text" value="">
-                </p>
-                <p class="field ">
-                    <label class="label required" for="name">Этаж</label>
-                    <input class="text-input" id="floor" name="name"  type="text" value="">
-                </p>
-                <p class="field ">
-                  <label class="label required" for="name">Подъезд</label>
-                  <input class="text-input" id="entrance" name="name"  type="text" value="">
-                </p>
-                 <p class="field ">
-                  <label class="label required" for="name">Домофон</label>
-                  <input class="text-input" id="intercom" name="name" type="text" value="">
-                </p>
 
+            <div class="container">
+                    <label class="label"  for="name">Куда</label>
+                    <p class="field required half col">
+                        <div class="row no-gutters">
+                            <div class="col-12 col-sm-6 col-md-8"><input class="text-input" id="street" name="street" placeholder="Введите улицу" required="" type="text" value=""></div>
+                            <div class="col-6 col-md-4"><input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value=""></div>
+                        </div>
+                    </p>
+            </div>
+
+            <div class="container">
+                <div class="row field half">
+                        <div class="col">
+                            <input class="text-input half" id="flat" name="name" placeholder="Кв./офис" type="text" value="">
+                        </div>
+                    <div class="col">
+                            <input class="text-input" id="floor" name="name" placeholder="Этаж" type="text" value="">
+                        </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row field half">
+                    <div class="col">
+                            <input class="text-input" id="entrance" name="name" placeholder="Подъезд"  type="text" value="">
+                        </div>
+                    <div class="col">
+                            <input class="text-input" id="intercom" name="name" placeholder="Домофон" type="text" value="">
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-
-
-  <p class='field required half'>
-    <label class='label' for='phone'>Телефон</label>
-    <input class='text-input' id='phone' name='phone' required="" type='tel'>
-  </p>
-  <p class='field'>
-    <label class='label' for='about'>Комментарий к заказу</label>
-    <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
-  </p>
-
-  <p class='field half'>
-    <input class='button' type='submit' value='Отправить'>
-  </p>
+    <p class='field'>
+        <label class='label' for='about'>Комментарий к заказу</label>
+        <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
+    </p>
 
 </form>
-<!-- partial -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
-
 
 <script>
     //Telegram
@@ -335,8 +332,6 @@
 
     });
 
-
-
     //тестовая кнопка отправки
     document.getElementById('add-from').addEventListener('submit', function(event){
 
@@ -355,7 +350,12 @@
     //street - Улица //house - номер дома //flat - Кв./офис //floor - Этаж
     //entrance - Подъезд  //Intercom - Домофон //phone - Телефон //about - Комментарий
     //tg отправка формы
+
     Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        var ev = new Event("submit");
+        console.log("Btn click");
+        document.getElementById("form").dispatchEvent(ev);
+
         let radio = document.querySelectorAll('.option-input');
         for (let i = 0; i < radio.length; i++) {
             if (radio[i].checked) {
