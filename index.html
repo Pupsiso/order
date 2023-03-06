@@ -243,13 +243,12 @@
             <label class='option-label' for='option-1'>Заберу сам</label>
 
         <div class="delivery l-1">
-
             <div class="container">
-                    <label class="label"  for="name">Куда</label>
-                    <p class="field required half col">
+                    <p class="required">
+                        <label class="label" for="name">Куда</label>
                         <div class="row no-gutters">
-                            <div class="col-12 col-sm-6 col-md-8"><input class="text-input" id="street" name="street" placeholder="Введите улицу" required="" type="text" value=""></div>
-                            <div class="col-6 col-md-4"><input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value=""></div>
+                            <div class="col-12 col-sm-6 col-md-8"><input class="text-input" id="street" name="street" placeholder="Улицу" required="" type="text" value=""></div>
+                            <div class="col-6 col-md-4"><input class="text-input" id="house" name="house" placeholder="Дома" required=""  type="text" value=""></div>
                         </div>
                     </p>
             </div>
@@ -276,9 +275,12 @@
             </div>
         </div>
     </div>
+
+    <p class='field required half'>
+        <input class='text-input' id='phone' name='phone' placeholder="Номер телефона"  required="" type='tel'>
+    </p>
     <p class='field'>
-        <label class='label' for='about'>Комментарий к заказу</label>
-        <textarea class='textarea' cols='50' id='about' name='about' rows='4'></textarea>
+        <textarea class='textarea' cols='50' id='about' name='about' placeholder="Комментарий к заказу" rows='4'></textarea>
     </p>
 
 </form>
