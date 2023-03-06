@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
     @subtext-color: #777;
     @suggestions-bg-color: #fff;
@@ -233,24 +234,24 @@
 </script>
 
 
-
+<form action='' class='form' id="add-from" onsubmit="return false">
     <div class="field">
             <label class='label required'>Способ доставки</label>
             <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
-            <label class='option-label' for='option-0'>Доставка</label>
+            <label class='option-label' for='option-0'><i class="fa fa-taxi" aria-hidden="true"></i> Доставка</label>
             <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
-            <label class='option-label' for='option-1'>Заберу сам</label>
+            <label class='option-label' for='option-1'><i class="fa fa-street-view" aria-hidden="true"></i> Заберу сам</label>
 
         <div class="delivery l-1">
             <div class="container">
                     <p class="required">
-                        <label class="label" for="name">Куда</label>
+                        <label class="label" for="name"><i class="fa fa-home" aria-hidden="true"></i> Куда</label>
                         <div class="row no-gutters">
                             <div class="col-8 col-md-4">
-                                <input class="text-input" id="street" name="street" placeholder="Улицу" required="" type="text" value="">
+                                <input class="text-input" id="street" name="street" placeholder="Улицу" style="font-family:Arial, FontAwesome" required="" type="text" value=""></i>
                             </div>
                             <div class="col-4 col-md-4">
-                                <input class="text-input" id="house" name="house" placeholder="Дома" required=""  type="text" value="">
+                                <input class="text-input" id="house" name="house" placeholder="Дома" required="" style="font-family:Arial, FontAwesome" type="text" value="">
                             </div>
                         </div>
                     </p>
@@ -259,20 +260,20 @@
             <div class="container">
                 <div class="row field half">
                         <div class="col">
-                            <input class="text-input half" id="flat" name="name" placeholder="Кв./офис" type="text" value="">
+                            <input class="text-input half" id="flat" name="name" placeholder="Кв./офис" style="font-family:Arial, FontAwesome" type="text" value="">
                         </div>
                     <div class="col">
-                            <input class="text-input" id="floor" name="name" placeholder="Этаж" type="text" value="">
+                            <input class="text-input" id="floor" name="name" placeholder="Этаж" style="font-family:Arial, FontAwesome" type="text" value="">
                         </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row field half">
                     <div class="col">
-                            <input class="text-input" id="entrance" name="name" placeholder="Подъезд"  type="text" value="">
+                            <input class="text-input" id="entrance" name="name" placeholder="Подъезд"  style="font-family:Arial, FontAwesome" type="text" value="">
                         </div>
                     <div class="col">
-                            <input class="text-input" id="intercom" name="name" placeholder="Домофон" type="text" value="">
+                            <input class="text-input" id="intercom" name="name" placeholder="Домофон" style="font-family:Arial, FontAwesome" type="text" value="">
                         </div>
                 </div>
             </div>
@@ -280,10 +281,10 @@
     </div>
 
     <p class='field required half'>
-        <input class='text-input' id='phone' name='phone' placeholder="Номер телефона"  required="" type='tel'>
+        <input class='text-input' id='phone' name='phone' placeholder="&#xf10b; Номер телефона"  required="" style="font-family:Arial, FontAwesome" type='tel'>
     </p>
     <p class='field'>
-        <textarea class='textarea' cols='50' id='about' name='about' placeholder="Комментарий к заказу" rows='4'></textarea>
+        <textarea class='textarea' cols='50' id='about' name='about' placeholder="&#xf0e5; Комментарий к заказу" style="font-family:Arial, FontAwesome" rows='4'></textarea>
     </p>
 
 </form>
