@@ -14,386 +14,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
-    <style>
-    @subtext-color: #777;
-    @suggestions-bg-color: #fff;
-    @subtext-label-color: #f5f5f5;
 
-    .box-sizing(@sizing: border-box) {
-        -ms-box-sizing: @sizing;
-        -moz-box-sizing: @sizing;
-        -webkit-box-sizing: @sizing;
-        box-sizing: @sizing;
-    }
-
-    .rounded(@radius) {
-        -webkit-border-radius: @radius;
-        -moz-border-radius: @radius;
-        border-radius: @radius;
-    }
-
-    .suggestions-nowrap {
-        white-space: nowrap;
-    }
-
-    /**
-     * Основной INPUT
-     */
-    .suggestions-input {
-        // IE9 can't determine border-style until it is specified in stylesheets
-        //  border: 1px solid grey;
-        .box-sizing();
-        width: 100%;
-
-        &::-ms-clear {
-            display: none;
-        }
-    }
-
-    .suggestions-wrapper {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        vertical-align: top;
-
-        //Prevent font scaling in landscape while allowing user zoom
-        -webkit-text-size-adjust: 100%;
-    }
-
-    /**
-     * Выпадающий блок с найденными подсказками
-     */
-    .suggestions-suggestions {
-        background: @suggestions-bg-color;
-        border: 1px solid #999;
-        .box-sizing;
-        cursor: default;
-        color: white;
-        left: 0;
-        min-width: 100%;
-        position: static;
-        z-index: 9999;
-
-        //Prevent font scaling in landscape while allowing user zoom
-        -webkit-text-size-adjust: 100%;
-
-        strong {
-            font-weight: normal;
-            color: #3399ff;
-        }
-
-        &.suggestions-mobile {
-            border-style: none;
-
-            .suggestions-suggestion {
-                border-bottom: 1px solid #ddd;
-            }
-        }
-    }
-
-    /**
-     * Контейнер для одной подсказки
-     */
-    .suggestions-suggestion {
-        padding: 4px 4px;
-        overflow: hidden;
-
-        &:hover {
-            background: darken(@suggestions-bg-color, 3%);
-        }
-    }
-
-    /**
-     * Выбранная (активная) подсказка
-     */
-    .suggestions-selected {
-        background: darken(@suggestions-bg-color, 6%);
-
-        &:hover {
-            background: darken(@suggestions-bg-color, 6%);
-        }
-    }
-
-    /**
-     * Информационный блок в верхней части выпадашки с подсказками
-     */
-    .suggestions-hint {
-        padding: 4px 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        color: @subtext-color;
-        font-size: 85%;
-        line-height: 20px;
-    }
-
-    /**
-     * Дополнительный текст в подсказке, который идет второй строкой
-     */
-    .suggestions-subtext {
-        color: @subtext-color;
-    }
-
-    /**
-     * Размещает дополнительный текст в одну строку с основным текстом подсказки
-     */
-    .suggestions-subtext_inline {
-        display: inline-block;
-        min-width: 6em;
-        vertical-align: bottom;
-        margin: 0 0.5em 0 0;
-    }
-
-    /**
-     * Разделитель нескольких дополнительных текстов
-     */
-    .suggestions-subtext-delimiter {
-        display: inline-block;
-        width: 2px;
-    }
-
-    /**
-     * Выделяет подсказку
-     */
-    .suggestions-subtext_label {
-        margin: 0 0 0 0.25em;
-        .rounded(3px);
-        padding: 0 3px;
-
-        background: @subtext-label-color;
-        font-size: 85%;
-    }
-
-    .suggestions-value {
-        &[data-suggestion-status="LIQUIDATED"] {
-            position: relative;
-
-            &:after {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 50%;
-
-                border-top: 1px solid rgba(0, 0, 0, 0.4);
-
-                content: "";
-            }
-        }
-    }
-
-    /**
-     * Промо-блок
-     */
-    .suggestions-promo {
-        font-size: 85%;
-        display: none;
-        color: @subtext-color;
-        padding: 4px;
-        text-align: center;
-        a {
-            color: @subtext-color;
-            display: block;
-            filter: grayscale(100%);
-            line-height: 20px;
-            text-decoration: none;
-        }
-        a:hover {
-            filter: grayscale(0);
-        }
-        svg {
-            height: 20px;
-            vertical-align: bottom;
-        }
-    }
-
-    @media screen and (min-width: 600px) {
-        .suggestions-promo {
-            position: absolute;
-            top: 0;
-            right: 0;
-            text-align: left;
-        }
-    }
-
-</style><style>
-    .delivery {
-        display: none;
-    }
-    #option-0:checked~.l-1,
-    #option-1:checked~.l-2 {
-        display: block;
-    }
-
-</style>
 </head>
 <body>
+    <form action='' class='form' id="add-from" onsubmit="return false">
 
-<script>
-    //required - нужно заполнить данные
-    //field
-</script>
+        <div class="field">
+                <label class='label required'>Способ доставки</label>
+                <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
+                <label class='option-label' for='option-0'>Доставка</label>
+                <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
+                <label class='option-label' for='option-1'>Заберу сам</label>
 
-
-<form action='' class='form' id="add-from" onsubmit="return false">
-
-    <div class="field">
-            <label class='label required'>Способ доставки</label>
-            <input class='option-input' id='option-0' name='option' type='radio' required="" value='delivery'>
-            <label class='option-label' for='option-0'>Доставка</label>
-            <input class='option-input' id='option-1' name='option' type='radio' required="" value='pickup'>
-            <label class='option-label' for='option-1'>Заберу сам</label>
-
-        <div class="delivery l-1">
-            <div class="container">
-                    <p class="required">
-                        <label class="label" for="name">Куда</label>
-                        <div class="row no-gutters">
-                            <div class="col-8 col-md-4">
-                                <input class="text-input" id="street" name="street" placeholder="Улицу" required="" type="text" value="">
+            <div class="delivery l-1">
+                <div class="container">
+                        <p class="required">
+                            <label class="label" for="name">Куда</label>
+                            <div class="row no-gutters">
+                                <div class="col-8 col-md-4">
+                                    <input class="text-input" id="street" name="street" onkeyup="checkParams()" placeholder="Улицу*" required="" type="text" value="">
+                                </div>
+                                <div class="col-4 col-md-4">
+                                    <input class="text-input" id="house" name="house" onkeyup="checkParams()" placeholder="Дома*" required=""  type="text" value="">
+                                </div>
                             </div>
-                            <div class="col-4 col-md-4">
-                                <input class="text-input" id="house" name="house" placeholder="Дома" required=""  type="text" value="">
-                            </div>
-                        </div>
-                    </p>
-            </div>
-
-            <div class="container">
-                <div class="row field half">
-                        <div class="col">
-                            <input class="text-input half" id="flat" name="name" placeholder="Кв./офис" type="text" value="">
-                        </div>
-                    <div class="col">
-                            <input class="text-input" id="floor" name="name" placeholder="Этаж" type="text" value="">
-                        </div>
+                        </p>
                 </div>
-            </div>
-            <div class="container">
-                <div class="row field half">
-                    <div class="col">
-                            <input class="text-input" id="entrance" name="name" placeholder="Подъезд"  type="text" value="">
-                        </div>
-                    <div class="col">
-                            <input class="text-input" id="intercom" name="name" placeholder="Домофон" type="text" value="">
-                        </div>
+
+                <div class="container">
+                    <div class="row field half">
+                            <div class="col">
+                                <input class="text-input half" id="flat" name="name" placeholder="Кв./офис" type="text" value="">
+                            </div>
+                        <div class="col">
+                                <input class="text-input" id="floor" name="name" placeholder="Этаж" type="text" value="">
+                            </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row field half">
+                        <div class="col">
+                                <input class="text-input" id="entrance" name="name" placeholder="Подъезд"  type="text" value="">
+                            </div>
+                        <div class="col">
+                                <input class="text-input" id="intercom" name="name" placeholder="Домофон" type="text" value="">
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <p class='field required half'>
-        <input class='text-input' id='phone' name='phone' placeholder="Номер телефона"  required="" type='tel'>
-    </p>
-    <p class='field'>
-        <textarea class='textarea' cols='50' id='about' name='about' placeholder="Комментарий к заказу" rows='4'></textarea>
-    </p>
-
-</form>
-
-<script>
-    //Telegram
-
-    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-    tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
-    tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
-    tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
-    tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
-    tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
-    tg.expand(); //расширяем на все окно
-    tg.MainButton.show() //Показать окно
-
-    document.querySelector('.option-input').addEventListener('click', () => {
-
-        //Подсказки Api https://dadata.ru/profile/#subscriptions
-
-        var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
-        var type  = "ADDRESS";
-        var $street = $("#street");
-        var $house  = $("#house");
-        // улица
-        $street.suggestions({
-          token: token,
-          type: type,
-          hint: 'Выберите вариант или продолжите ввод',
-          bounds: "street",
-          constraints: {
-              "locations": [{
-                "region": "Тюменская",
-                "city": "Тюмень"
-              }]
-            },
-          count: 15,
-          restrict_value: true
-        });
-
-        // дом
-        $house.suggestions({
-          token: token,
-          type: type,
-          hint: 'Выберите вариант или продолжите ввод',
-          noSuggestionsHint: false,
-          bounds: "house",
-          constraints: $street
-        });
-        console.log($street.suggestions())
-
-    });
-
-    //тестовая кнопка отправки
-    document.getElementById('add-from').addEventListener('submit', function(event){
-
-        let radio = document.querySelectorAll('.option-input');
-        for (let i = 0; i < radio.length; i++) {
-            if (radio[i].checked) {
-                dostavka = radio[i].value;
-                break;
-            }
-        }
-        console.log(dostavka)
-
-        //получить kladr_id"72000001000010500"
-    })
-
-    //street - Улица //house - номер дома //flat - Кв./офис //floor - Этаж
-    //entrance - Подъезд  //Intercom - Домофон //phone - Телефон //about - Комментарий
-    //tg отправка формы
-
-    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-        var ev = new Event("submit");
-        console.log("Btn click");
-        document.getElementById("form").dispatchEvent(ev);
-
-        let radio = document.querySelectorAll('.option-input');
-        for (let i = 0; i < radio.length; i++) {
-            if (radio[i].checked) {
-                dostavka = radio[i].value;
-                break;
-            }
-        }
-        let street = document.getElementById("street").value;
-        let house = document.getElementById("house").value;
-        let flat = document.getElementById("flat").value;
-        let floor = document.getElementById("floor").value;
-        let entrance = document.getElementById("entrance").value;
-        let intercom = document.getElementById("intercom").value;
-        let phone = document.getElementById("phone").value;
-        let about = document.getElementById("about").value;
-
-        const data = {
-            dostavka,
-            street,
-            house,
-            flat,
-            floor,
-            entrance,
-            intercom,
-            phone,
-            about
-        }
-
-    tg.sendData(JSON.stringify(data));
-    //при клике на основную кнопку отправляем данные в строковом виде
-    });
-</script>
-
+        <p class='field required half'>
+            <input class='text-input' id='phone' name='phone' onkeyup="checkParams()" placeholder="Номер телефона*"  required="" type='tel'>
+        </p>
+        <p class='field'>
+            <textarea class='textarea' cols='50' id='about' name='about' placeholder="Комментарий к заказу" rows='4'></textarea>
+        </p>
+    </form>
+    <script src='app.js'></script>
 </body>
 </html>
