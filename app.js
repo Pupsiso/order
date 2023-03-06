@@ -71,7 +71,7 @@ function checkParams() {
 
 
 
-    if (street.length > 2 && house.length > 2 && phone.length > 1) {
+    if (street.length >= 1 && house.length >= 1 && phone.length >= 6) {
         tg.MainButton.setParams({"color": "#228B22"}); //меняем цвет
         tg.MainButton.enable() //показываем
     } else {
