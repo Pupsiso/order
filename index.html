@@ -2,8 +2,11 @@
 <html lang="ru" >
 <head>
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <title>Telegram &amp; Способ доставки</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
+    <meta name="theme-color" content="#000000"/>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
+  <script>window.Telegram.WebApp.ready()</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700'><link rel="stylesheet" href="./style.css">
@@ -207,8 +210,7 @@
         }
     }
 
-</style>
-    <style>
+</style><style>
     .delivery {
         display: none;
     }
@@ -232,33 +234,22 @@
         <label class='option-label' for='option-1'>Заберу сам</label>
 
         <div class="delivery l-1">
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm">
-                <p class="required">
+                <p class="field required">
                   <label class="label required"  for="name">Улица</label>
                   <input class="text-input" id="street" name="street" placeholder="Введите улицу" required="" type="text" value="">
-                </p></div>
-                  <p class="required">
+                </p>
+                  <p class="field required">
                   <label class="label required" for="name">Дом</label>
                   <input class="text-input" id="house" name="house" placeholder="Введите номер дома" required=""  type="text" value="">
                 </p>
-              </div>
-          </div>
-        <div class="container">
-            <div class="row">
-              <div class="col-sm">
                 <p class="field">
                   <label class="label required" for="name">Кв./офис</label>
                   <input class="text-input" id="flat" name="name" type="text" value="">
                 </p>
-
                 <p class="field ">
                     <label class="label required" for="name">Этаж</label>
                     <input class="text-input" id="floor" name="name"  type="text" value="">
                 </p>
-              </div>
-              <div class="col-sm">
                 <p class="field ">
                   <label class="label required" for="name">Подъезд</label>
                   <input class="text-input" id="entrance" name="name"  type="text" value="">
@@ -268,9 +259,6 @@
                   <input class="text-input" id="intercom" name="name" type="text" value="">
                 </p>
 
-              </div>
-            </div>
-        </div>
     </div>
   </div>
 
@@ -375,9 +363,6 @@
                 break;
             }
         }
-
-
-
         let street = document.getElementById("street").value;
         let house = document.getElementById("house").value;
         let flat = document.getElementById("flat").value;
