@@ -66,14 +66,10 @@ function checkParams() {
     var street = $('#street').val();
     var house = $('#house').val();
     var phone = $('#phone').val();
-    var option = $('#option-0').val();
-    var option1 = $('#option-1').val();
 
-
-
-    if (street.length >= 1 && house.length >= 1 && phone.length >= 6) {
-        tg.MainButton.setParams({"color": "#228B22"}); //меняем цвет
-        tg.MainButton.enable() //показываем
+    if (street.length > 0 && house.length > 0 && phone.length > 0) {
+        tg.MainButton.setParams({"color": "#228B22"});
+        tg.MainButton.enable()
     } else {
         tg.MainButton.setParams({"color": "#3c3c3c"});
         tg.MainButton.disable()
