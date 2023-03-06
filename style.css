@@ -5,15 +5,43 @@ html {
 body {
   background-color: #111111;
   font-family: "Titillium Web", sans-serif;
+  font-size: 0.7em;
 }
+
+li {
+    color: var (--modal_text_secondary);font - family: Helvetica Neue;font - weight: 400;line - height: 18 px;margin - bottom: 3 px
+}
+
+
 @media screen and (min-width: 40em) {
   body {
-    font-size: 1.25em;
+    font-size: 0.25em;
   }
 }
 
+.input {
+    align - items: center;
+    background: var (--input_background);
+    border - radius: 5 px;
+    display: flex;
+    padding - left: 17 px;
+    padding - right: 17 px
+}
+
+.input input {
+    background: transparent;border: none;color: var (--input_color);height: 36 px;margin - left: 9 px;outline: none;padding: 0;width: calc(100 % -47 px)
+}
+
+.input img {
+    height: 20 px;padding - bottom: 17 px;padding - top: 17 px;width: 20 px
+}
+
+.input: not(: last - child) {
+    margin - bottom: 14 px
+}
+
 .form .button, .form .message, .customSelect, .form .select, .form .textarea, .form .text-input, .form .option-input + label, .form .checkbox-input + label, .form .label {
-  padding: 0.75em 1em;
+  padding: 0.45em 0.5em;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -23,6 +51,7 @@ body {
   border: none;
   background: none;
   display: block;
+  border-radius: 5px;
 }
 
 .form .label {
@@ -47,7 +76,7 @@ body {
 .customSelect, .form .select, .form .textarea, .form .text-input, .form .option-input + label, .form .checkbox-input + label {
   font: inherit;
   line-height: normal;
-  width: 100%;
+  width: 99%;
   box-sizing: border-box;
   background: #222222;
   color: white;
