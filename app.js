@@ -2,6 +2,9 @@
 let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 tg.expand(); //расширяем на все окно
 
+$.mask.definitions['h'] = "[0|1|3|4|5|6|7|9]"
+$(".mask-phone").mask("+7 (h99) 999-99-99");
+
 document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll('[data-mask="phone"]') // ищем все поля с атрибутом data-mask="phone"
     if (!elements) return // если таких нет, прекращаем выполнение функции

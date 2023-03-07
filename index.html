@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js'></script>
-    <script src="https://unpkg.com/imask"></script>
+    <script src="https://snipp.ru/cdn/maskedinput/jquery.maskedinput.min.js"></script>
 
 </head>
 <body>
@@ -66,7 +66,7 @@
         </div>
 
         <p class='field required half'>
-            <input class='text-input' id='phone' name='phone' data-mask="phone" onkeyup="checkParams()" placeholder="Номер телефона*"  required="" type='tel'>
+            <input class='text-input mask-phone' id='phone' name='phone' onkeyup="checkParams()" placeholder="Номер телефона*"  required="" type='tel'>
         </p>
         <p class='field'>
             <textarea class='textarea' cols='50' id='about' name='about' placeholder="Комментарий к заказу" rows='4'></textarea>
