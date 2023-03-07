@@ -1,15 +1,21 @@
 //Telegram
 let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 tg.expand(); //расширяем на все окно
-tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
-tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
-tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
-tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
-tg.MainButton.setParams({"color": "#3c3c3c"}); //так изменяются все параметры
-tg.MainButton.show() //Показать окно
-tg.MainButton.disable()
+
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('[data-mask="phone"]') // ищем все поля с атрибутом data-mask="phone"
+    if (!elements) return // если таких нет, прекращаем выполнение функции
+    const phoneOptions = { // создаем объект параметров
+        mask: '+{7}(000)000-00-00' // задаем единственный параметр mask
+    }
+    elements.forEach(el => { // для каждого найденного поля с атрибутом [data-mask="phone"]
+        IMask(el, phoneOptions) // инициализируем плагин с установленными выше параметрами
+    })
+
+})
 
 document.querySelector('.option-input').addEventListener('click', () => {
+
     //Подсказки Api https://dadata.ru/profile/#subscriptions
 
     var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
@@ -61,20 +67,47 @@ document.getElementById('add-from').addEventListener('submit', function(event){
 //street - Улица //house - номер дома //flat - Кв./офис //floor - Этаж
 //entrance - Подъезд  //Intercom - Домофон //phone - Телефон //about - Комментарий
 
+    tg.MainButton.text = "Продолжить"; //изменяем текст кнопки
+    tg.MainButton.setText("Продолжить"); //изменяем текст кнопки иначе
+    tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+    tg.MainButton.color = "#1778E0"; //изменяем цвет бэкграунда кнопки
+    tg.MainButton.setParams({"color": "#3c3c3c"}); //так изменяются все параметры
+    tg.MainButton.show() //Показать окно
+    tg.MainButton.disable()
 
 function checkParams() {
     var street = $('#street').val();
     var house = $('#house').val();
     var phone = $('#phone').val();
 
-    if (street.length > 0 && house.length > 0 && phone.length > 0) {
-        tg.MainButton.setParams({"color": "#228B22"});
-        tg.MainButton.enable()
-    } else {
-        tg.MainButton.setParams({"color": "#3c3c3c"});
-        tg.MainButton.disable()
+
+    let radio = document.querySelectorAll('.option-input');
+    for (let i = 0; i < radio.length; i++) {
+        if (radio[i].checked) {
+           dostavka = radio[i].value;
+           break;
+        }
     }
 
+    console.log(dostavka)
+
+    if (dostavka == "delivery") {
+        if (street.length > 0 && house.length > 0 && phone.length > 0) {
+            tg.MainButton.setParams({"color": "#228B22"});
+            tg.MainButton.enable()
+        } else {
+            tg.MainButton.setParams({"color": "#3c3c3c"});
+            tg.MainButton.disable()
+        }
+    } else {
+        if (phone.length > 0) {
+            tg.MainButton.setParams({"color": "#228B22"});
+            tg.MainButton.enable()
+        } else {
+            tg.MainButton.setParams({"color": "#3c3c3c"});
+            tg.MainButton.disable()
+        }
+    }
 }
 
 
