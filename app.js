@@ -30,7 +30,7 @@ document.querySelector('.option-input').addEventListener('click', () => {
     $street.suggestions({
       token: token,
       type: type,
-      scrollOnFocus: false,
+      scrollOnFocus: true,
       hint: 'Выберите вариант или продолжите ввод',
       bounds: "street",
       constraints: {
@@ -47,7 +47,7 @@ document.querySelector('.option-input').addEventListener('click', () => {
     $house.suggestions({
         token: token,
         type: type,
-        scrollOnFocus: false,
+        scrollOnFocus: true,
         hint: 'Выберите вариант или продолжите ввод',
         noSuggestionsHint: false,
         bounds: "house",
