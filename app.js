@@ -30,6 +30,7 @@ document.querySelector('.option-input').addEventListener('click', () => {
     $street.suggestions({
       token: token,
       type: type,
+      scrollOnFocus: false,
       hint: 'Выберите вариант или продолжите ввод',
       bounds: "street",
       constraints: {
@@ -46,6 +47,7 @@ document.querySelector('.option-input').addEventListener('click', () => {
     $house.suggestions({
         token: token,
         type: type,
+        scrollOnFocus: false,
         hint: 'Выберите вариант или продолжите ввод',
         noSuggestionsHint: false,
         bounds: "house",
@@ -96,7 +98,7 @@ function checkParams() {
 
     if (dostavka == "delivery") {
         if (street.length > 0 && house.length > 0 && phone.length > 0) {
-            tg.MainButton.setParams({"color": "#228B22"});
+            tg.MainButton.setParams({"color": "#32746a"});
             tg.MainButton.enable()
         } else {
             tg.MainButton.setParams({"color": "#3c3c3c"});
@@ -104,7 +106,7 @@ function checkParams() {
         }
     } else {
         if (phone.length > 0) {
-            tg.MainButton.setParams({"color": "#228B22"});
+            tg.MainButton.setParams({"color": "#32746a"});
             tg.MainButton.enable()
         } else {
             tg.MainButton.setParams({"color": "#3c3c3c"});

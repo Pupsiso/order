@@ -1,14 +1,49 @@
+@font - face {
+    font - family: 'CirceNeueMachina';
+    src: url('https://static.tildacdn.com/tild3562-6632-4262-b965-363663313063/NeueMachina-Regular.woff') format('woff');
+    font - weight: 300;
+    font - style: normal
+}
+@font - face {
+    font - family: 'CirceNeueMachina';
+    src: url('https://static.tildacdn.com/tild3265-6432-4134-b834-353133303531/Circe-Regular.woff') format('woff');
+    font - weight: 400;
+    font - style: normal
+}
+@font - face {
+    font - family: 'CirceNeueMachina';
+    src: url('https://static.tildacdn.com/tild6462-3830-4434-b237-643032386333/NeueMachina-Medium.woff') format('woff');
+    font - weight: 500;
+    font - style: normal
+}
+@font - face {
+    font - family: 'CirceNeueMachina';
+    src: url('https://static.tildacdn.com/tild3361-3864-4139-a432-366137353336/NeueMachina-Bold.woff') format('woff');
+    font - weight: 600;
+    font - style: normal
+}
+@font - face {
+    font - family: 'CirceNeueMachina';
+    src: url('https://static.tildacdn.com/tild3531-3566-4834-b031-386337343165/Circe-Bold.woff') format('woff');
+    font - weight: 700;
+    font - style: normal
+}
+
+
 html {
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background-color: #111111;
-  font-family: "Titillium Web", sans-serif;
+  background-color: #0e0e10;
+  font-family: 'CirceNeueMachina',Arial,sans-serif;
 }
 
 li {
-    color: var (--modal_text_secondary);font - family: Helvetica Neue;font - weight: 400;line - height: 18 px;margin - bottom: 3 px
+    color: var (--modal_text_secondary);
+    font - weight: 400;
+    line - height: 18 px;
+    margin - bottom: 3 px
 }
 
 
@@ -46,8 +81,7 @@ li {
           appearance: none;
   outline: none;
   line-height: normal;
-  border-radius: 0;
-  border: none;
+
   background: none;
   display: block;
   border-radius: 5px;
@@ -75,11 +109,12 @@ li {
 .customSelect, .form .select, .form .textarea, .form .text-input, .form .option-input + label, .form .checkbox-input + label {
   font: inherit;
   line-height: normal;
-  width: 99%;
+  width: 96%;
   box-sizing: border-box;
-  background: #222222;
+  background: #000000;
   color: white;
   position: relative;
+  padding-left: 12px;
 }
 .customSelect:placeholder, .form .select:placeholder, .form .textarea:placeholder, .form .text-input:placeholder, .form .option-input + label:placeholder, .form .checkbox-input + label:placeholder {
   color: white;
@@ -124,7 +159,7 @@ li {
 .form .option-input + label, .form .checkbox-input + label {
   display: inline-block;
   width: auto;
-  color: #4E4E4E;
+  color: #bababb;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -137,6 +172,7 @@ li {
 }
 .form .option-input:checked + label, .form .checkbox-input:checked + label {
   color: white;
+  background-color: #3d756a;
 }
 
 .form .button {
@@ -155,11 +191,13 @@ li {
 .form .button:hover, .form .button:focus, .form .button:active {
   color: white;
   border-color: white;
+  background-color: #3d756a;
 }
 .form .button:active {
   position: relative;
   top: 1px;
   left: 1px;
+  background-color: #3d756a;
 }
 
 body {
@@ -242,209 +280,223 @@ body {
   transform-origin: 0 0;
 }
 
+@subtext-color: #777;
+@suggestions-bg-color: #fff;
+@subtext-label-color: #f5f5f5;
+
+.box-sizing(@sizing: border-box) {
+    -ms-box-sizing: @sizing;
+    -moz-box-sizing: @sizing;
+    -webkit-box-sizing: @sizing;
+    box-sizing: @sizing;
+}
+
+.rounded(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.suggestions-nowrap {
+    white-space: nowrap;
+}
+
+/**
+ * Основной INPUT
+ */
+.suggestions-input {
+    // IE9 can't determine border-style until it is specified in stylesheets
+    //  border: 1px solid grey;
+    .box-sizing();
+    width: 100%;
+
+    &::-ms-clear {
+        display: none;
+    }
+}
+
+.suggestions-wrapper {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+
+    //Prevent font scaling in landscape while allowing user zoom
+    -webkit-text-size-adjust: 100%;
+}
+
+/**
+ * Выпадающий блок с найденными подсказками
+ */
+.suggestions-suggestions {
+    background: @suggestions-bg-color;
+    border: 1px solid #999;
+    .box-sizing;
+    cursor: default;
+    color: white;
+    left: 0;
+    min-width: 100%;
+    position: static;
+    z-index: 9999;
+
+    //Prevent font scaling in landscape while allowing user zoom
+    -webkit-text-size-adjust: 100%;
+
+    strong {
+        font-weight: normal;
+        color: #3399ff;
+    }
+
+    &.suggestions-mobile {
+        border-style: none;
+
+        .suggestions-suggestion {
+            border-bottom: 1px solid #ddd;
+        }
+    }
+}
+
+/**
+ * Контейнер для одной подсказки
+ */
+.suggestions-suggestion {
+    padding: 4px 4px;
+    overflow: hidden;
+
+    &:hover {
+        background: darken(@suggestions-bg-color, 3%);
+    }
+}
+
+/**
+ * Выбранная (активная) подсказка
+ */
+.suggestions-selected {
+    background: darken(@suggestions-bg-color, 6%);
+
+    &:hover {
+        background: darken(@suggestions-bg-color, 6%);
+    }
+}
+
+/**
+ * Информационный блок в верхней части выпадашки с подсказками
+ */
+.suggestions-hint {
+    padding: 4px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: @subtext-color;
+    font-size: 85%;
+    line-height: 20px;
+}
+
+/**
+ * Дополнительный текст в подсказке, который идет второй строкой
+ */
+.suggestions-subtext {
+    color: @subtext-color;
+}
+
+/**
+ * Размещает дополнительный текст в одну строку с основным текстом подсказки
+ */
+.suggestions-subtext_inline {
+    display: inline-block;
+    min-width: 6em;
+    vertical-align: bottom;
+    margin: 0 0.5em 0 0;
+}
+
+/**
+ * Разделитель нескольких дополнительных текстов
+ */
+.suggestions-subtext-delimiter {
+    display: inline-block;
+    width: 2px;
+}
+
+/**
+ * Выделяет подсказку
+ */
+.suggestions-subtext_label {
+    margin: 0 0 0 0.25em;
+    .rounded(3px);
+    padding: 0 3px;
+
+    background: @subtext-label-color;
+    font-size: 85%;
+}
+
+.suggestions-value {
+    &[data-suggestion-status="LIQUIDATED"] {
+        position: relative;
+
+        &:after {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.4);
+
+            content: "";
+        }
+    }
+}
+
+/**
+* Промо-блок
+*/
+.suggestions-promo {
+    font-size: 85%;
+    display: none;
+    color: @subtext-color;
+    padding: 4px;
+    text-align: center;
+    a {
+        color: @subtext-color;
+        display: block;
+        filter: grayscale(100%);
+        line-height: 20px;
+        text-decoration: none;
+    }
+    a:hover {
+        filter: grayscale(0);
+    }
+    svg {
+        height: 20px;
+        vertical-align: bottom;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .suggestions-promo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: left;
+    }
+}
+
+/**
+* Выбор доставки
+*/
+
 .delivery {
     display: none;
 }
+
 #option-0:checked~.l-1,
-#option-1:checked~.l-2 {
+#option-0:checked~.l-2,
+#option-1:checked~.l-2{
     display: block;
 }
 
-@subtext-color: #777;
-    @suggestions-bg-color: #fff;
-    @subtext-label-color: #f5f5f5;
+/**
+* Цвет выбора кнопки
+*/
 
-    .box-sizing(@sizing: border-box) {
-        -ms-box-sizing: @sizing;
-        -moz-box-sizing: @sizing;
-        -webkit-box-sizing: @sizing;
-        box-sizing: @sizing;
-    }
+.delivery-button {
 
-    .rounded(@radius) {
-        -webkit-border-radius: @radius;
-        -moz-border-radius: @radius;
-        border-radius: @radius;
-    }
-
-    .suggestions-nowrap {
-        white-space: nowrap;
-    }
-
-    /**
-     * Основной INPUT
-     */
-    .suggestions-input {
-        // IE9 can't determine border-style until it is specified in stylesheets
-        //  border: 1px solid grey;
-        .box-sizing();
-        width: 100%;
-
-        &::-ms-clear {
-            display: none;
-        }
-    }
-
-    .suggestions-wrapper {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        vertical-align: top;
-
-        //Prevent font scaling in landscape while allowing user zoom
-        -webkit-text-size-adjust: 100%;
-    }
-
-    /**
-     * Выпадающий блок с найденными подсказками
-     */
-    .suggestions-suggestions {
-        background: @suggestions-bg-color;
-        border: 1px solid #999;
-        .box-sizing;
-        cursor: default;
-        color: white;
-        left: 0;
-        min-width: 100%;
-        position: static;
-        z-index: 9999;
-
-        //Prevent font scaling in landscape while allowing user zoom
-        -webkit-text-size-adjust: 100%;
-
-        strong {
-            font-weight: normal;
-            color: #3399ff;
-        }
-
-        &.suggestions-mobile {
-            border-style: none;
-
-            .suggestions-suggestion {
-                border-bottom: 1px solid #ddd;
-            }
-        }
-    }
-
-    /**
-     * Контейнер для одной подсказки
-     */
-    .suggestions-suggestion {
-        padding: 4px 4px;
-        overflow: hidden;
-
-        &:hover {
-            background: darken(@suggestions-bg-color, 3%);
-        }
-    }
-
-    /**
-     * Выбранная (активная) подсказка
-     */
-    .suggestions-selected {
-        background: darken(@suggestions-bg-color, 6%);
-
-        &:hover {
-            background: darken(@suggestions-bg-color, 6%);
-        }
-    }
-
-    /**
-     * Информационный блок в верхней части выпадашки с подсказками
-     */
-    .suggestions-hint {
-        padding: 4px 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        color: @subtext-color;
-        font-size: 85%;
-        line-height: 20px;
-    }
-
-    /**
-     * Дополнительный текст в подсказке, который идет второй строкой
-     */
-    .suggestions-subtext {
-        color: @subtext-color;
-    }
-
-    /**
-     * Размещает дополнительный текст в одну строку с основным текстом подсказки
-     */
-    .suggestions-subtext_inline {
-        display: inline-block;
-        min-width: 6em;
-        vertical-align: bottom;
-        margin: 0 0.5em 0 0;
-    }
-
-    /**
-     * Разделитель нескольких дополнительных текстов
-     */
-    .suggestions-subtext-delimiter {
-        display: inline-block;
-        width: 2px;
-    }
-
-    /**
-     * Выделяет подсказку
-     */
-    .suggestions-subtext_label {
-        margin: 0 0 0 0.25em;
-        .rounded(3px);
-        padding: 0 3px;
-
-        background: @subtext-label-color;
-        font-size: 85%;
-    }
-
-    .suggestions-value {
-        &[data-suggestion-status="LIQUIDATED"] {
-            position: relative;
-
-            &:after {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 50%;
-
-                border-top: 1px solid rgba(0, 0, 0, 0.4);
-
-                content: "";
-            }
-        }
-    }
-
-    /**
-     * Промо-блок
-     */
-    .suggestions-promo {
-        font-size: 85%;
-        display: none;
-        color: @subtext-color;
-        padding: 4px;
-        text-align: center;
-        a {
-            color: @subtext-color;
-            display: block;
-            filter: grayscale(100%);
-            line-height: 20px;
-            text-decoration: none;
-        }
-        a:hover {
-            filter: grayscale(0);
-        }
-        svg {
-            height: 20px;
-            vertical-align: bottom;
-        }
-    }
-
-    @media screen and (min-width: 600px) {
-        .suggestions-promo {
-            position: absolute;
-            top: 0;
-            right: 0;
-            text-align: left;
-        }
-    }
+}
