@@ -18,9 +18,6 @@
 </head>
 <body>
     <form action='' class='form' id="add-from" onsubmit="return false">
-
-        <label class='label required'>WepApp ver 0.0.10</label>
-
         <div class="field">
             <label class="label required">Способ доставки</label>
             <input class="option-input" id="option-0" name="option" type="radio" required="" value="delivery" checked>
@@ -50,7 +47,7 @@
                             <input class="text-input" id="house" name="house" onkeyup="checkParams()" placeholder="Дома" required="" type="text" value="">
                         </div>
                     </div>
-
+                    <label class="required label" id="message"></label>
                     <div class="row no-gutters field">
                         <div class="col">
                                 <input class="text-input" id="flat" name="name" placeholder="Кв./офис" type="text" value="">

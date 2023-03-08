@@ -17,20 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-document.querySelector('.option-input').addEventListener('click', () => {
-
     //Подсказки Api https://dadata.ru/profile/#subscriptions
-
     var token = "ae88835bdbe058921eb8012bc6b79a7a7e606ac9";
     var type  = "ADDRESS";
     var $street = $("#street");
     var $house  = $("#house");
+    var $message = $("#message");
 
     // улица
     $street.suggestions({
       token: token,
       type: type,
       scrollOnFocus: true,
+      onSelect: selectAddress,
+      onSelectNothing: selectNone,
       hint: 'Выберите вариант или продолжите ввод',
       bounds: "street",
       constraints: {
@@ -48,11 +48,45 @@ document.querySelector('.option-input').addEventListener('click', () => {
         token: token,
         type: type,
         scrollOnFocus: true,
+        onSelect: streetkladrid,
         hint: 'Выберите вариант или продолжите ввод',
         noSuggestionsHint: false,
         bounds: "house",
         constraints: $street
     });
+
+function selectAddress(suggestion) {
+  console.log(suggestion);
+
+  if (suggestion.data.house) {
+    $message.text("Отлично, можно продолжать!");
+    tg.MainButton.setParams({"color": "#3c3c3c"});
+    tg.MainButton.disable()
+
+  } else {
+    $message.text("Укажите адрес до дома, чтобы продолжить");
+    tg.MainButton.setParams({"color": "#32746a"});
+    tg.MainButton.enable()
+  }
+
+  selectedAddress = suggestion.data;
+  seladdr = suggestion.data.city_kladr_id;
+
+}
+
+function selectNone() {
+  selectedAddress = null;
+  $message.text("Вы не ввели адрес");
+  $continue.prop("disabled", true);
+}
+
+function streetkladrid(suggestion) {
+    tg_kladrid = suggestion.data.kladr_id;
+    console.log(tg_kladrid)
+}
+
+document.querySelector('.option-input').addEventListener('click', () => {
+
 });
 
 //тестовая кнопка отправки
@@ -130,7 +164,7 @@ Telegram.WebApp.onEvent('mainButtonClicked', function(){
         }
     }
 
-
+    let kladrid = tg_kladrid
     if (dostavka == "delivery") {
         let dostavka = 'Доставка'
         console.log(dostavka)
@@ -143,7 +177,7 @@ Telegram.WebApp.onEvent('mainButtonClicked', function(){
         let phone = document.getElementById("phone").value;
         let about = document.getElementById("about").value;
 
-        data = {dostavka,street,house,flat,floor,entrance,intercom,phone,about}
+        data = {kladrid,dostavka,street,house,flat,floor,entrance,intercom,phone,about}
 
     } else {
         let dostavka = 'Навынос'
@@ -151,7 +185,7 @@ Telegram.WebApp.onEvent('mainButtonClicked', function(){
         let phone = document.getElementById("phone").value;
         let about = document.getElementById("about").value;
 
-        data = {dostavka,phone,about}
+        data = {kladrid,dostavka,phone,about}
     }
 
     console.log(data)
