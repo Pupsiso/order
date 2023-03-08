@@ -64,7 +64,8 @@ function selectAddress(suggestion) {
     tg.MainButton.disable()
 
   } else {
-    $message.text("Укажите адрес до дома, чтобы продолжить");
+    //$message.text("Укажите адрес до дома, чтобы продолжить");
+    pushNotification("Укажите адрес до дома, чтобы продолжить", "normal");
     tg.MainButton.setParams({"color": "#32746a"});
     tg.MainButton.enable()
   }
@@ -77,6 +78,7 @@ function selectAddress(suggestion) {
 function selectNone() {
   selectedAddress = null;
   $message.text("Вы не ввели адрес");
+  pushNotification("Вы не ввели адрес", "red");
   $continue.prop("disabled", true);
 }
 
@@ -84,10 +86,6 @@ function streetkladrid(suggestion) {
     tg_kladrid = suggestion.data.kladr_id;
     console.log(tg_kladrid)
 }
-
-document.querySelector('.option-input').addEventListener('click', () => {
-
-});
 
 //тестовая кнопка отправки
 document.getElementById('add-from').addEventListener('submit', function(event){
@@ -193,3 +191,30 @@ Telegram.WebApp.onEvent('mainButtonClicked', function(){
     tg.sendData(JSON.stringify(data));
     //при клике на основную кнопку отправляем данные в строковом виде
 });
+
+
+notifications_container = document.querySelector(".notifications");
+var pushNotification = function (message, color) {
+  notification = document.createElement("div");
+  x_close = document.createElement("div");
+  x_close.appendChild(document.createElement("div"));
+  x_close.appendChild(document.createElement("div"));
+  notification.appendChild(x_close);
+  notification.appendChild(
+    document.createElement("p").appendChild(document.createTextNode(message))
+  );
+  notification.classList.add(color);
+  notifications_container.appendChild(notification);
+  notification.firstChild.addEventListener("click", function () {
+    this.parentNode.classList.add("fading_out");
+    setTimeout(function () {
+      notification.parentNode.removeChild(notification);
+    }, 1000);
+  });
+  setTimeout(function () {
+    notification.parentNode.removeChild(notification);
+  }, 7000);
+};
+//pushNotification("I am green", "green");
+//pushNotification("I am red", "red");
+//pushNotification("I am normal", "normal");
