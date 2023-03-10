@@ -281,7 +281,7 @@ body {
 }
 
 @subtext-color: #777;
-@suggestions-bg-color: #fff;
+@suggestions-bg-color: #000;
 @subtext-label-color: #f5f5f5;
 
 .box-sizing(@sizing: border-box) {
@@ -329,15 +329,16 @@ body {
  * Выпадающий блок с найденными подсказками
  */
 .suggestions-suggestions {
-    background: @suggestions-bg-color;
+    background: #000;
     border: 1px solid #999;
     .box-sizing;
     cursor: default;
     color: white;
     left: 0;
-    min-width: 100%;
-    position: static;
+    min-width: 96%;
+    position: absolute;
     z-index: 9999;
+    border-radius: 5px;
 
     //Prevent font scaling in landscape while allowing user zoom
     -webkit-text-size-adjust: 100%;
@@ -502,29 +503,30 @@ body {
 }
 
 .notifications {
-  position: fixed;
-  bottom: 50px;
-  left: 50px;
-  z-index: 100000000;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-end;
-  align-items: flex-start;
+    position: fixed;
+    bottom: 205px;
+    right: 15px;
+    z-index: 100000000;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 .notifications > div {
-  width: 300px;
-  padding: 30px;
-  position: relative;
-  border-radius: 15px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-end;
-  align-items: flex-start;
-  color: white;
-  font-size: 20px;
-  animation: goIn 1s ease-out forwards, goOut 1s ease-out forwards 5s;
-  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
-  margin-top: 20px;
+    width: 240px;
+    /* font-family: 'CirceNeueMachina',Arial,sans-serif; */
+    padding: 20px;
+    position: relative;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    color: white;
+    font-size: 16px;
+    animation: goIn 1s ease-out forwards, goOut 1s ease-out forwards 5s;
+    box-shadow: 2px 2px 15px rgb(0 0 0 / 25%);
+    margin-top: 20px;
 }
 .fading_out {
   opacity: 0 !important;
@@ -590,3 +592,14 @@ body {
   transform: rotate(-45deg);
   top: 7.5px;
 }
+
+.force-opaque::placeholder {
+  color: #e8474cde;
+  opacity: 1;
+}
+
+
+input::placeholder {
+  font-family: 'CirceNeueMachina',Arial,sans-serif;
+}
+

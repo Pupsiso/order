@@ -64,8 +64,8 @@ function selectAddress(suggestion) {
     tg.MainButton.disable()
 
   } else {
-    //$message.text("Укажите адрес до дома, чтобы продолжить");
-    pushNotification("Укажите адрес до дома, чтобы продолжить", "normal");
+    $message.text("Укажите адрес до дома, чтобы продолжить");
+    //pushNotification("Укажите адрес до дома, чтобы продолжить", "normal");
     tg.MainButton.setParams({"color": "#32746a"});
     tg.MainButton.enable()
   }
@@ -78,7 +78,7 @@ function selectAddress(suggestion) {
 function selectNone() {
   selectedAddress = null;
   $message.text("Вы не ввели адрес");
-  pushNotification("Вы не ввели адрес", "red");
+  //pushNotification("Вы не ввели адрес", "red");
   $continue.prop("disabled", true);
 }
 
