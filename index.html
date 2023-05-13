@@ -45,6 +45,14 @@
             <label class="option-label" for="option-0">Доставка</label>
             <input class="option-input" id="option-1" name="option" type="radio" value="pickup" required>
             <label class="option-label" for="option-1">Заберу сам</label>
+            <div class="row no-gutters">
+                    <div class="dining col-5">🍴 Приборы</div>
+                    <div class="diningnumber">
+                        <button class="dining-minus" type="button" onclick="this.nextElementSibling.stepDown();">-</button>
+                         <input id="dining-number" type="number" min="0"  max="10" value="1" readonly>
+                        <button class="dining-plus" type="button" onclick="this.previousElementSibling.stepUp();">+</button>
+                    </div>
+                </div>
 
             <div class="delivery l-2">
                 <p class="field half">
@@ -120,9 +128,9 @@
         <span class="copyright">©&nbsp;2023&nbsp;
             <span>Easy Delivery app | </span>
         </span>
-        <span class="ng-star-inserted">ver: 0.2356</span><!---->
+        <span class="ng-star-inserted">ver: 0.2359</span><!---->
     </div>
 
-    <script src='./public/js/app_min-22354a4.js'></script>
+    <script src='./public/js/app_min-as34ad3.js'></script>
 </body>
 </html>
