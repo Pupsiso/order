@@ -9,12 +9,11 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
     <script>window.Telegram.WebApp.ready()</script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/style_f5f4g5.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-utils.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -41,96 +40,99 @@
     <form action='' class='form' id="add-from" onsubmit="return false" method="get">
         <div class="field">
             <label class="label">Способ доставки</label>
-            <input class="option-input" id="option-0" name="option" type="radio" value="delivery" required checked>
-            <label class="option-label" for="option-0">Доставка</label>
-            <input class="option-input" id="option-1" name="option" type="radio" value="pickup" required>
-            <label class="option-label" for="option-1">Заберу сам</label>
-            <div class="row no-gutters">
-                    <div class="dining col-5">🍴 Приборы</div>
+                <input class="option-input" id="option-0" name="option" type="radio" value="delivery" required checked>
+                <label class="option-label" for="option-0">Доставка</label>
+                <input class="option-input" id="option-1" name="option" type="radio" value="pickup" required>
+                <label class="option-label" for="option-1">Заберу сам</label>
+                <div class="delivery l-2">
+                    <label class="label">Личные данные</label>
+                    <div class="row no-gutters">
+                        <div class="col-5">
+                             <p class="field input-with-placeholder">
+                                 <input class="text-input" id="name" name="name" maxlength="60" type="text" required>
+                                 <label class="key-label" for="name">Имя</label>
+                             </p>
+                        </div>
+                        <div class="col">
+                            <p class="field input-with-placeholder">
+                                <input class="text-input tel" style="min-width: 100%;" id="phone" name="phone" type="tel" value="" required>
+                                <label class="key-label" for="phone">Номер телефона</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="delivery l-1">
+                    <label class="label" for="name">Адрес доставки</label>
+                        <div class="row no-gutters field" id="streetlimit">
+                            <div class="col-8 input-with-placeholder">
+                                <input class="text-input" id="street"  name="street" type="search" value="" required>
+                                <label class="key-label" for="street">Улицу</label>
+                            </div>
+                            <div class="col input-with-placeholder">
+                                <input class="text-input" style="min-width: 100%;" id="house" name="house" type="text" maxlength="30" value="" required>
+                                <label class="key-label" for="house">Дома</label>
+                            </div>
+                        </div>
+                        <div class="row no-gutters field">
+                            <div class="col input-with-placeholder">
+                                    <input class="text-input" id="flat" name="flat" placeholder="" maxlength="10" type="text" value="" required>
+                                    <label for="flat">Кв./офис</label>
+                            </div>
+
+                            <div class="col input-with-placeholder">
+                                    <input class="text-input" style="min-width: 100%;" id="floor" name="floor" placeholder="" maxlength="10" type="text" value="" required>
+                                    <label for="floor">Этаж</label>
+                            </div>
+
+                        </div>
+                         <div class="row no-gutters field">
+                            <div class="col input-with-placeholder">
+                                    <input class="text-input" id="entrance" name="entrance" autocomplete="entrance" placeholder="" maxlength="10" type="text" value="" required>
+                                    <label for="entrance">Подъезд</label>
+                                </div>
+                            <div class="col input-with-placeholder">
+                                    <input class="text-input" style="min-width: 100%;" id="intercom" name="intercom" placeholder="" maxlength="20" type="text" value="" required>
+                                    <label for="intercom">Домофон</label>
+                                </div>
+                        </div>
+                    </div>
+        </div>
+
+        <label class="label" for="name">Дополнительная информация</label>
+        <div class="row no-gutters rect">
+                    <div class="dining col">🍴 Приборы</div>
                     <div class="diningnumber">
                         <button class="dining-minus" type="button" onclick="this.nextElementSibling.stepDown();">-</button>
-                         <input id="dining-number" type="number" min="0"  max="10" value="1" readonly>
+                         <input class="dining-text" id="dining-number" type="number" min="1"  max="10" value="1" readonly>
                         <button class="dining-plus" type="button" onclick="this.previousElementSibling.stepUp();">+</button>
                     </div>
-                </div>
-
-            <div class="delivery l-2">
-                <p class="field half">
-                        <label class="label" for="select">Время доставки</label>
-                            <select class="select" id="select">
-                                  <option selected="" value="now">⌚️ Ближайшее время</option>
-                            </select>
-                        </p>
-
-                <label class="label">Личные данные</label>
-                <div class="row no-gutters">
-                    <div class="col-5">
-                         <p class="field input-with-placeholder">
-                             <input class="text-input" id="name" name="name" maxlength="60" type="text" required>
-                             <label class="key-label" for="name">Имя</label>
-                         </p>
-                    </div>
-                    <div class="col">
-                        <p class="field input-with-placeholder">
-                            <input class="text-input tel" id="phone" name="phone" type="tel" value="" required>
-                            <label class="key-label" for="phone">Номер телефона</label>
-                        </p>
-                    </div>
-                </div>
             </div>
-            <div class="delivery l-1">
-                <label class="label" for="name">Условия доставки</label>
-                    <div class="row no-gutters field" id="streetlimit">
-                        <div class="col-8 input-with-placeholder">
-                            <input class="text-input" id="street" name="street" type="search" value="" required>
-                            <label class="key-label" for="street">Улицу</label>
-                        </div>
-                        <div class="col input-with-placeholder">
-                            <input class="text-input" id="house" name="house" type="text" maxlength="30" value="" required>
-                            <label class="key-label" for="house">Дома</label>
-                        </div>
-                    </div>
-                    <div class="row no-gutters field">
-                        <div class="col input-with-placeholder">
-                                <input class="text-input" id="flat" name="flat" placeholder="" maxlength="10" type="text" value="" required>
-                                <label for="flat">Кв./офис</label>
-                        </div>
 
-                        <div class="col input-with-placeholder">
-                                <input class="text-input" id="floor" name="floor" placeholder="" maxlength="10" type="text" value="" required>
-                                <label for="floor">Этаж</label>
-                        </div>
+        <div class="row no-gutters rect-time">
 
-                    </div>
-                     <div class="row no-gutters field">
-                        <div class="col input-with-placeholder">
-                                <input class="text-input" id="entrance" name="entrance" autocomplete="entrance" placeholder="" maxlength="10" type="text" value="" required>
-                                <label for="entrance">Подъезд</label>
-                            </div>
-                        <div class="col input-with-placeholder">
-                                <input class="text-input" id="intercom" name="intercom" placeholder="" maxlength="20" type="text" value="" required>
-                                <label for="intercom">Домофон</label>
-                            </div>
-                    </div>
-                </div>
+            <div class="dining col">⌚️ Доставки</div>
+            <select class="sel-time" id="select"><option selected="" value="now">Ближайшее время</option></select>
+
         </div>
 
         <div class="row no-gutters field">
             <div class="col input-with-placeholder">
-                <textarea class="textarea" cols="40" maxlength="300" id="about" name="about" placeholder="" rows="4" required></textarea>
+                <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="300" id="about" name="about" placeholder="" rows="4" required></textarea>
                 <label for="about">Комментарий к заказу</label>
             </div>
 
         </div>
     </form>
 
-    <div class="footer compact-hidden">
-        <span class="copyright">©&nbsp;2023&nbsp;
-            <span>Easy Delivery app | </span>
-        </span>
-        <span class="ng-star-inserted">ver: 0.2360</span><!---->
+    <div class="row no-gutters field">
+        <div class="footer compact-hidden">
+            <span class="copyright">©&nbsp;2023&nbsp;
+                <span>Easy Delivery app | </span>
+            </span>
+            <span class="ng-star-inserted">ver: 0.2371</span><br><span id="guuid"></span><!---->
+        </div>
     </div>
 
-    <script src='./public/js/app_min-3rfad3.js'></script>
+    <script src='./public/js/app_min_f5f4g5.js'></script>
 </body>
 </html>
