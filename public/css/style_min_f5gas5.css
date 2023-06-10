@@ -876,12 +876,12 @@ body {
 
 #notifier {
     position: fixed;
-    z-index: 101;
+    z-index: 99999;
     top: -50px;
     left: 0;
     right: 0;
     background: -webkit-linear-gradient(top, #f2f9fe 0%,#d6f0fd 100%);
-  background: -moz-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
+    background: -moz-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
     text-align: center;
     line-height: 2.5;
     overflow: hidden;
