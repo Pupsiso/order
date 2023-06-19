@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico" type="image/x-icon">
+    <title>Telegram &amp; Способ доставки</title>
+    <meta name="theme-color" content="#000000"/>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
+    <script>window.Telegram.WebApp.ready()</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="./public/css/style.css">-->
+    <link rel="stylesheet" href="./public/css/feedback/style_fsf234f.css">
+    <script src="https://jcward.com/UUID.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-utils.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93247495, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93247495" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <div class="warning" id="notifier"></div>
+
+    <div class="loader-wrap" id="load-wrap">
+        <div class="loader" id="loader">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+        <svg>
+            <defs>
+                <filter id="gooey">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"></feGaussianBlur>
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                        result="goo"></feColorMatrix>
+                    <feBlend in="SourceGraphic" in2="goo"></feBlend>
+                </filter>
+            </defs>
+        </svg>
+        <span id="error_load" style="color: #fff;font-size: 14px;"></span>
+    </div>
+
+    <form action='' class='form' id="add-from" onsubmit="return false" method="get">
+        <div class="field">
+            <label class="label" id="paycheck">Оцените заказ</label>
+                <ul class="options">
+                      <li class="option">
+                        <input class="option-input num_order" id="num_order-0" name="num_order" type="radio" value="1">
+                        <label class="option-label" for="num_order-0">1</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_order" id="num_order-1" name="num_order" type="radio" value="2">
+                        <label class="option-label" for="num_order-1">2</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_order" id="num_order-2" name="num_order" type="radio" value="3">
+                        <label class="option-label" for="num_order-2">3</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_order" id="num_order-3" name="num_order" type="radio" value="4">
+                        <label class="option-label" for="num_order-3">4</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_order" id="num_order-4" name="num_order" type="radio" value="5">
+                        <label class="option-label" for="num_order-4">5</label>
+                      </li>
+                </ul>
+                <div class="row no-gutters field">
+                    <div class="col input-with-placeholder">
+                        <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="300" id="order_about" name="order_about" placeholder="" rows="4" required></textarea>
+                        <label for="order_about">Ваш комментарий</label>
+                    </div>
+                </div>
+        </div>
+        <div class="field">
+            <label class="label">Согласны ли вы с утверждением, что заказ оформить легко?</label>
+                <ul class="options">
+                      <li class="option">
+                        <input class="option-input num_bot" id="num_bot-0" name="num_bot" type="radio" value="1">
+                        <label class="option-label" for="num_bot-0">1</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_bot" id="num_bot-1" name="num_bot" type="radio" value="2">
+                        <label class="option-label" for="num_bot-1">2</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_bot" id="num_bot-2" name="num_bot" type="radio" value="3">
+                        <label class="option-label" for="num_bot-2">3</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_bot" id="num_bot-3" name="num_bot" type="radio" value="4">
+                        <label class="option-label" for="num_bot-3">4</label>
+                      </li>
+                      <li class="option">
+                        <input class="option-input num_bot" id="num_bot-4" name="num_bot" type="radio" value="5">
+                        <label class="option-label" for="num_bot-4">5</label>
+                      </li>
+                </ul>
+                <div class="row no-gutters field">
+                    <div class="col input-with-placeholder">
+                        <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="300" id="bot_about" name="bot_about" placeholder="" rows="4" required></textarea>
+                        <label for="bot_about">Ваш комментарий поможет нам в улучшении Бота 🙏</label>
+                    </div>
+                </div>
+        </div>
+    </form>
+
+
+     <div class="row no-gutters field">
+            <span class="copyright"><span id="error_t" style="color: #fff;font-size: 14px;"></span>
+                <br><span id="guuid"></span>
+                <br>© 2023 | <span><a href="https://boteda.ru/" style="color: inherit">Easy Delivery App</a> |<span id="ver"></span></span>
+            </span>
+     </div>
+    <script src='./public/js/app_feedback_fsf234f.js'></script>
+
+</body>
+</html>
