@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico" type="image/x-icon">
-    <title>Telegram &amp; Способ доставки</title>
+    <title>Easy Delivery App &amp; Способ доставки</title>
     <meta name="theme-color" content="#000000"/>
     <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
     <script>window.Telegram.WebApp.ready()</script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/css/style_fsf234f.css">
-    <script src="https://jcward.com/UUID.js"></script>
+    <link rel="stylesheet" href="./public/css/style_f335e3fa.css">
+<!--    <script src="https://jcward.com/UUID.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js"></script>
@@ -62,11 +62,14 @@
     <form action='' class='form' id="add-from" onsubmit="return false" method="get">
         <div class="field">
             <label class="label">Способ доставки</label>
-                <input class="option-input" id="option-0" name="option" type="radio" value="delivery" required checked>
-                <label class="option-label" for="option-0">Доставка</label>
-                <input class="option-input" id="option-1" name="option" type="radio" value="pickup" required>
-                <label class="option-label" for="option-1">Заберу сам</label>
-                <div class="delivery l-2">
+            <input class="option-input" id="option-0" name="delivery" type="radio" value="delivery" required checked>
+            <label class="option-label" for="option-0">Доставка</label>
+            <input class="option-input" id="option-1" name="delivery" type="radio" value="pickup" required>
+            <label class="option-label" for="option-1">Заберу сам</label>
+            <label class="label">Выберите способ оплаты</label>
+            <div class="payment-list">
+            </div>
+            <div class="delivery l-2">
                     <label class="label">Личные данные</label>
                     <div class="row no-gutters">
                         <div class="col-5">
@@ -82,8 +85,8 @@
                             </p>
                         </div>
                     </div>
-                </div>
-                <div class="delivery l-1">
+            </div>
+            <div class="delivery l-1">
                     <label class="label" for="name">Адрес доставки</label>
                         <div class="row no-gutters field" id="streetlimit">
                             <div class="col-8 input-with-placeholder">
@@ -133,7 +136,7 @@
         <div class="row no-gutters rect-time">
 
             <div class="dining col">⌚️ Доставка</div>
-            <select class="sel-time" id="select"><option selected="" value="now">Ближайшее время</option></select>
+            <select class="sel-time" id="select"><option selected="" value="now">⌚️ Ближайшее время</option></select>
 
         </div>
 
@@ -142,7 +145,6 @@
                 <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="300" id="about" name="about" placeholder="" rows="4" required></textarea>
                 <label for="about">Комментарий к заказу</label>
             </div>
-
         </div>
     </form>
 
@@ -152,6 +154,6 @@
                 <br>© 2023 | <span><a href="https://boteda.ru/" style="color: inherit">Easy Delivery App</a> |<span id="ver"></span></span>
             </span>
     </div>
-    <script src='./public/js/app_a345rr46.js'></script>
+    <script src='./public/js/app_f335e3fa.js'></script>
 </body>
 </html>

@@ -140,7 +140,10 @@ li {
 }
 
 
-.customSelect, .form .select, .form .textarea, .form .text-input, .form .option-input + label, .form .checkbox-input + label {
+.customSelect,.form .select,
+.form .textarea,.form .text-input,
+.form .option-input + label,
+.form .checkbox-input + label {
   font: inherit;
   line-height: normal;
   width: 96%;
@@ -151,6 +154,7 @@ li {
   padding-left: 12px;
   padding-top: 16px;
 }
+
 .customSelect:placeholder, .form .select:placeholder, .form .textarea:placeholder, .form .text-input:placeholder, .form .option-input + label:placeholder, .form .checkbox-input + label:placeholder {
   color: white;
 }
@@ -524,11 +528,13 @@ body {
     display: none;
 }
 
+
 #option-0:checked~.l-1,
 #option-0:checked~.l-2,
 #option-1:checked~.l-2{
     display: block;
 }
+
 
 /**
 * Цвет выбора кнопки
@@ -902,3 +908,86 @@ body {
     background: -webkit-linear-gradient(top, #45766a 0%,#45766a 100%);/* Chrome10+,Safari5.1+ */
     color: #fff;
 }
+
+.radio-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.radio-item [type="radio"]{
+    display: none;
+}
+
+.radio-item label{
+    display: block;
+    padding: 8px 50px;
+    background: #000000;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 400;
+    min-width: 250px;
+    white-space: nowrap;
+    position: relative;
+    color: white;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+.radio-item label{
+    font-size: 0.7em;
+    }
+}
+
+.radio-item label:after,
+.radio-item label:before{
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.radio-item label:after{
+    height: 20px;
+    width: 20px;
+    border: 2px solid #3d756a;
+    left: 22px;
+    top: calc(50% - 10px);
+}
+.radio-item label:before{
+    background: #ffffff;
+    height: 10px;
+    width: 10px;
+    left: 27px;
+    top: calc(50% - 5px);
+    transform: scale(5);
+    transition: .4s ease-in-out 0s;
+    opacity: 0;
+    visibility: hidden;
+}
+.radio-item [type="radio"]:checked ~ label{
+    border-color: #45766a;
+}
+
+.radio-item [type="radio"]:checked ~ label:before{
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.checkout-payment__slider-image {
+    -webkit-box-align: center;
+    align-items: center;
+    max-width:
+    max-content;
+    max-height: 26px;
+}
+
+#pay-0:checked~.p-1,
+#pay-0:checked~.p-2,
+#pay-1:checked~.p-2{
+    display: block;
+}
+
