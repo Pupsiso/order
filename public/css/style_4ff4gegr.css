@@ -529,9 +529,26 @@ body {
 }
 
 
-#option-0:checked~.l-1,
+/**
+* Выбор доставки
+option-0 Доставка
+option-1 Навынос
+option-2 в завидении
+
+l-2 - личные данные
+
+l-3 - забрать заказ завидения
+
+l-4 - номер стола
+*/
+
+#option-0:checked~ .l-1,
 #option-0:checked~.l-2,
-#option-1:checked~.l-2{
+#option-1:checked~.l-2,
+#option-1:checked~.l-3,
+#option-2:checked~.l-2,
+#option-2:checked~.l-3,
+#option-2:checked~.l-4{
     display: block;
 }
 
@@ -991,3 +1008,85 @@ body {
     display: block;
 }
 
+/* #container_map {
+  margin: 10px;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+} */
+
+.modal {
+  transition: opacity 0.25s ease;
+  }
+  body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+  }.opacity-95 {opacity: .95;}
+
+
+.vilv {
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.vilv svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.delivery-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  flex-wrap: nowrap;
+  scrollbar-width: none; /* Firefox */
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    pointer-events: auto; /* Enable pointer events */
+  
+}
+
+.delivery-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.delivery-option {
+  background-color: #000;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  color: #fff;
+  font-size: 0.7em;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.delivery-option.unavailable {
+  background-color: #444;
+  cursor: not-allowed;
+  color: #888;
+}
+
+.delivery-option input {
+  display: none;
+}
+
+.delivery-option.selected {
+  border-color: #45766a;
+  background-color: #333;
+  transform: translate3d(0px, 0px, 0px);
+  transition-duration: 0ms;
+}
+
+
+.delivery-option.selected .option-content {
+  font-weight: bold;
+}
