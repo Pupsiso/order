@@ -34,6 +34,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="https://mapgl.2gis.com/api/js/v1"></script> -->
+     <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    
+        ym(93247495, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93247495" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 
 <body oncontextmenu="return false;">
@@ -193,27 +210,42 @@
         </span>
     </div>
     <script src='./public/js/app_4ff4gegr.js'></script>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script>
+        var current_version = "0.141";
+        // Функция для сравнения версий и обновления страницы при несоответствии
+        function checkVersionAndReload(currentVersion, stVersion) {
+            var reloadPerformed = sessionStorage.getItem('reloadPerformedVersion');
+            var reloadTimestamp = parseInt(sessionStorage.getItem('reloadTimestampVersion'));
+            
+            if (reloadPerformed === 'true' && reloadTimestamp && Date.now() < reloadTimestamp) {
+                console.log("Перезагрузка уже выполнена.");
+                return;
+            }
 
-        ym(93247495, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
-        });
+            var currentVersionNumbers = currentVersion.split('.').map(Number);
+            var stVersionNumbers = stVersion.split('.').map(Number);
+
+            if (!currentVersionNumbers.every(function(num) { return !isNaN(num); }) ||
+                !stVersionNumbers.every(function(num) { return !isNaN(num); })) {
+                console.log("Некорректный формат версии.");
+                return;
+            }
+
+            for (var i = 0; i < currentVersionNumbers.length; i++) {
+                if (currentVersionNumbers[i] !== stVersionNumbers[i]) {
+                    console.log(currentVersion + " не равно " + stVersion);
+                    // Устанавливаем метку о выполненной перезагрузке в sessionStorage
+                    sessionStorage.setItem('reloadPerformedVersion', 'true');
+                    // Устанавливаем временную метку на 10 секунд вперед от текущего времени
+                    sessionStorage.setItem('reloadTimestampVersion', Date.now() + 10000);
+                    // Обновляем страницу с игнорированием кэша
+                    window.location.reload(true);
+                    return;
+                }
+            }
+            console.log(`Версия актуальная ${stVersion}`);
+        }
+        checkVersionAndReload(current_version, st_ver);
     </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/93247495" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
 </body>
-
 </html>
