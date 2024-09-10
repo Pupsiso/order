@@ -1,0 +1,344 @@
+.address-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.address-bar img {
+    margin-right: 10px;
+}
+
+.address-bar span {
+    flex-grow: 1;
+}
+
+/* Основной стиль для модальных окон */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #0e0e10;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Контейнер содержимого модального окна */
+.modal-content {
+    background-color: #0e0e10;
+    margin: 0; /* Убираем отступы, чтобы модальное окно занимало весь экран */
+    padding: 0; /* Убираем внутренние отступы */
+    border-radius: 0; /* Убираем скругления */
+    width: 100%; /* Растягиваем по ширине */
+    height: 100%; /* Растягиваем по высоте */
+    max-width: 100%; /* Убираем ограничение ширины */
+    max-height: 100%; /* Убираем ограничение высоты */
+    overflow-y: auto; /* Добавляем прокрутку, если контент превышает высоту экрана */
+    display: flex; /* Используем flex для выравнивания содержимого */
+    flex-direction: column; /* Вертикальное расположение элементов внутри */
+}
+
+/* .clear-input {
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.clear-input:hover {
+    color: black;
+} */
+
+.clear-input {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+    margin-left: 10px; /* Отступ слева от input */
+    transition: color 0.3s ease;
+}
+
+.clear-input:hover {
+    color: #666; /* Меняем цвет при наведении */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff; /* Белый цвет текста */
+    background-color: #121212; /* Фон заголовка для лучшей видимости */
+    padding: 10px;
+    position: sticky; /* Используем sticky для фиксации в пределах модального окна */
+    top: 0; /* Фиксируем заголовок сверху */
+    z-index: 1001; /* Повышаем z-index, чтобы заголовок был выше основного содержимого */
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем небольшую тень для отделения заголовка от остального контента */
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-header .close {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    margin: -1rem 0rem -1rem auto;
+}
+
+.modal-header .close:hover,
+.modal-header .close:focus {
+    color: #bbb;
+}
+
+
+/* #address-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    color: #E0DEDA;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    min-width: 0;
+    line-height: 2;
+    padding-top: 14px;
+    padding-left: 22px;
+    padding-right: 0;
+    padding-bottom: 14px;
+    background-color: #191918;
+} */
+
+.address-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    /* border: 1px solid #ccc; */
+    border-radius: 6px; /* Добавляем скругленные углы */
+    width: 100%;
+    height: 48px;
+    background-color: #000000;
+}
+
+#address-input {
+    flex-grow: 1; /* Растягиваем input на всю доступную ширину */
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: #00000000;
+    color: white;
+}
+
+#suggestions button, #confirmed-addresses button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* Стили для подтвержденных адресов */
+.confirmed-address-item {
+    position: relative;
+    padding: 10px 15px; /* Пространство внутри каждого элемента */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #444; /* Граница между подсказками */
+}
+
+.confirmed-address-item:hover {
+    background-color: #555; /* Более светлый фон при наведении */
+}
+
+/* Основной текст для подтвержденного адреса (улица и дом) */
+.confirmed-address-hint {
+    font-size: 18px; /* Размер основного текста */
+    font-weight: bold; /* Жирный шрифт */
+    color: #fff; /* Цвет текста в темной теме */
+}
+
+/* Вспомогательный текст для подтвержденного адреса (подъезд, этаж, квартира) */
+.confirmed-address-subhint {
+    font-size: 14px; /* Размер вспомогательного текста */
+    color: #aaa; /* Цвет текста для вспомогательной информации */
+}
+
+.remove-address {
+    /* font-size: 20px; */
+    font-weight: bold;
+    /* cursor: pointer; */
+    color: #999;
+    margin-left: 38px;
+    transition: color 0.3s ease;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    /* color: #ff0000; */
+    cursor: pointer;
+}
+
+/* .remove-address {
+    transform: translateY(0%);
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 30px;
+} */
+
+
+.remove-suggestion:hover, .remove-address:hover {
+    color: darkred;
+}
+
+/* Контейнер для предложенных адресов */
+/* #suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+
+/* Элементы подсказок */
+.suggestion-item {
+    padding: 10px 15px; /* Пространство внутри каждого элемента */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #444; /* Граница между подсказками */
+}
+
+.confirmed-address-item:last-child, .suggestion-item:last-child {
+    border-bottom: none; /* Убираем последнюю нижнюю границу */
+}
+
+.suggestion-item:hover {
+    background-color: #444; /* Более светлый фон при наведении */
+}
+
+/* Основной текст подсказки */
+.suggestion-hint {
+    font-size: 16px; /* Размер основного текста */
+    color: #fff;
+}
+
+/* Вспомогательный текст подсказки */
+.suggestion-subhint {
+    font-size: 14px; /* Размер вспомогательного текста */
+    color: #aaa;
+}
+
+
+#map {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: none;
+    /* margin-top: 10px; */
+    position: relative; /* Добавлено для позиционирования иконки */
+    /* opacity: 0.7; */
+}
+
+#mapModal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.5);  */ /* Полупрозрачный фон */
+    z-index: 1000; /* Убедитесь, что модальное окно находится выше карты */
+    overflow: hidden; /* Убедитесь, что карта не прокручивается в модальном окне */
+}
+#confirm-btn {
+    width: 100%;
+    padding: 10px;
+    background: #00aaff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+
+#current-address {
+    top: 25%;
+    color: #FFFFFF;
+    width: 100%;
+    position: absolute;
+    font-size: 28px;
+    transform: translateY(-50%);
+    text-align: center;
+    font-family: YSText, sans-serif;
+    line-height: 31px;
+    padding-left: 16px;
+    padding-right: 16px;
+    letter-spacing: -0.015em;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    z-index: 1000;
+}
+
+.static-marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Не позволяет взаимодействовать с элементом */
+    z-index: 1000;
+}
+
+.static-marker img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Стандартный стиль маркера */
+
+
+#marker {
+	pointer-events: none;
+	display: none;
+	z-index: 2;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+#marker_drop {
+	margin-bottom: 0px;
+	transition: margin 160ms ease-in-out;
+}
+
+#marker_drop.moving {
+	margin-bottom: 24px;
+}
+
+#marker_shadow {
+	position: absolute;
+}

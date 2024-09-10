@@ -12,12 +12,11 @@
     <meta name="HandheldFriendly" content="True">
     <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
     <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico"
-        type="image/x-icon">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico"type="image/x-icon">
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="./public/css/main.css?v=143">
-    <link rel="stylesheet" href="./public/css/style.min.css?v=143">
+    <link rel="stylesheet" href="./public/css/main.css?v=160">
+    <link rel="stylesheet" href="./public/css/style.css?v=160">
+    <link rel="stylesheet" href="./public/css/modal.css?v=160">
     <script src="./public/js/generate_uuid.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  -->
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
@@ -55,6 +54,55 @@
             </defs>
         </svg>
         <span id="error_load" style="color: #fff;font-size: 14px;"></span>
+    </div>
+    
+    <!-- Модальное окно для ввода адреса -->
+    <div id="addressModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h2>Ввод адреса</h2> -->
+                <div class="address-input-container">
+                    <input type="text" id="address-input" placeholder="Введите улицу">
+                </div>
+                <span class="close" id="close-address-modal">&times;</span>
+            </div>
+            <!-- <input type="text" id="address-input" placeholder="Введите улицу"> -->
+            <div id="suggestions-container"></div>
+            <div id="suggestions"></div>
+            <div id="confirmed-addresses"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для карты -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h2>Карта</h2>
+                <span class="close" id="close-map-modal">&times;</span>
+            </div> -->
+            <div id="map">
+                <div id="current-address"></div>
+                <div id="marker">
+                    <div id="marker_shadow" style="transform: translate(0px, -14px);">
+                        <svg display="block" height="41px" width="27px" viewBox="0 0 27 41">
+                            <defs>
+                                <radialGradient id="shadowGradient">
+                                    <stop offset="10%" stop-opacity="0.4"></stop>
+                                    <stop offset="100%" stop-opacity="0.05"></stop>
+                                </radialGradient>
+                            </defs>
+                            <ellipse cx="13.5" cy="34.8" rx="10.5" ry="5.25" fill="url(#shadowGradient)"></ellipse>
+                        </svg>
+                    </div>
+                    <div id="marker_drop" style="transform: translate(0px, -14px);">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+                            <path fill="#3FB1CE" d="M16 0c-6.627 0-12 5.373-12 12s12 20 12 20 12-13.373 12-20-5.373-12-12-12zM16 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <button id="confirm-btn">Я здесь</button>
+        </div>
     </div>
 
     <form action='' class='form' id="add-from" onsubmit="return false" method="get">
@@ -112,18 +160,12 @@
             </div>
             <div class="delivery l-1" id="delivery-address">
                 <label class="label" for="name">Адрес доставки</label>
-                <div class="row no-gutters field" id="streetlimit">
-                    <div class="col-8 input-with-placeholder">
-                        <input class="text-input" id="street" name="street" type="search" value="" required>
-                        <label class="key-label" for="street">Улицу</label>
-                    </div>
-                    <div class="col input-with-placeholder">
-                        <input class="text-input" style="min-width: 100%;" id="house" name="house" type="text"
-                            maxlength="30" value="" required>
-                        <label class="key-label" for="house">Дома</label>
+                <div class="row no-gutters field">
+                    <div class="col input-with-placeholder" id="open-modal">
+                        <input class="text-input" id="street" style="min-width: 100%;" name="street" type="search" placeholder="" value="" required readonly>
+                        <label class="key-label" for="street">Введите адрес доставки</label>
                     </div>
                 </div>
-                <!-- <div id="container_map"></div> -->
                 <div class="row no-gutters field">
                     <div class="col input-with-placeholder">
                         <input class="text-input" id="flat" name="flat" placeholder="" maxlength="10" type="text"
@@ -156,7 +198,7 @@
                         <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="255"
                             id="order_place_comment" name="order_place_comment" placeholder="" rows="2"
                             required></textarea>
-                        <label for="order_place_comment">Комментарий курьеру</label>
+                        <label for="order_place_comment">🚕 Комментарий курьеру</label>
                     </div>
                 </div>
             </div>
@@ -180,7 +222,7 @@
             <div class="col input-with-placeholder">
                 <textarea class="textarea" style="min-width: 100%;" cols="40" maxlength="255" id="comment"
                     name="comment" placeholder="" rows="4" required></textarea>
-                <label for="comment">Комментарий ресторану</label>
+                <label for="comment">🍽 Комментарий ресторану</label>
             </div>
         </div>
     </form>
@@ -192,7 +234,8 @@
                     id="ver"></span></span>
         </span>
     </div>
-    <script src='./public/js/app.min.js?v=144'></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=cc3a4700-b817-41c7-8c56-c1fa57b5b93c&suggest_apikey=baff19b2-41d3-403f-9be2-25707be7ada1" type="text/javascript"></script>
+    <script src='./public/js/app.js?v=160'></script>
     </script>
     <!-- Yandex.Metrika counter --> 
     <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.webvisor.org/metrika/tag_ww.js", "ym"); ym(93247495, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/93247495" style="position:absolute; left:-9999px;" alt="" /></div></noscript> 
