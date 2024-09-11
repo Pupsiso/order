@@ -225,6 +225,7 @@
 } */
 
 
+
 /* Элементы подсказок */
 .suggestion-item {
     padding: 10px 15px; /* Пространство внутри каждого элемента */
@@ -253,6 +254,16 @@
     color: #aaa;
 }
 
+.suggestion-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Или укажите нужную высоту */
+    width: 100%; /* Или укажите нужную ширину */
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
 
 #map {
     width: 100%;
@@ -341,4 +352,33 @@
 
 #marker_shadow {
 	position: absolute;
+}
+
+.loading-hint, .loading-subhint {
+    background-color: #535353;
+    border-radius: 4px;
+    animation: loading 1.2s infinite;
+}
+
+.loading-hint {
+    height: 20px;
+    width: 70%;
+    margin-bottom: 8px;
+}
+
+.loading-subhint {
+    height: 16px;
+    width: 50%;
+}
+
+@keyframes loading {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
