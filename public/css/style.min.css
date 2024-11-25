@@ -902,7 +902,7 @@ display: none;
 #notifier {
   position: fixed;
   z-index: 99999;
-  top: -50px;
+  top: -250px;
   left: 0;
   right: 0;
   background: -webkit-linear-gradient(top, #f2f9fe 0%,#d6f0fd 100%);
@@ -913,18 +913,18 @@ display: none;
   -webkit-box-shadow: 0 0 5px black;
   -moz-box-shadow:    0 0 5px black;
   box-shadow:         0 0 5px black;
-
   -webkit-transition: all 0.7s ease-in-out;
-
-
 }
+
 #notifier.show {
-top : 0;
+  top: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 #notifier.warning {
-  background: -moz-linear-gradient(top, #45766a 0%, #45766a 100%);/* FF3.6+ */
-  background: -webkit-linear-gradient(top, #45766a 0%,#45766a 100%);/* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #45766a 0%, #45766a 100%);
+  background: -webkit-linear-gradient(top, #45766a 0%,#45766a 100%);
   color: #fff;
 }
 

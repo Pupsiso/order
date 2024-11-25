@@ -3,38 +3,30 @@
 <head>
     <meta charset="utf-8">
     <title>Easy Delivery App &amp; Способ доставки</title>
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="MobileOptimized" content="176">
     <meta name="HandheldFriendly" content="True">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script><!--Подключаем скрипт от телеграм-->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="theme-color" content="#000000" />
     <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico"type="image/x-icon">
-    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="./public/css/main.css?v=172">
-    <link rel="stylesheet" href="./public/css/style.min.css?v=172">
-    <link rel="stylesheet" href="./public/css/modal.css?v=172">
+    <link rel="stylesheet" href="./public/css/main.css?v=180">
+    <link rel="stylesheet" href="./public/css/style.min.css?v=180">
+    <link rel="stylesheet" href="./public/css/modal.css?v=180">
     <script src="./public/js/generate_uuid.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=5f9ee64c-4f9e-4ad9-bdca-a4a3d6ed2d43" type="text/javascript"></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  -->
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
-        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://api-maps.yandex.ru">    
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@latest/dist/js/jquery.suggestions.min.js"></script>
-    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-utils.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous"referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone.min.js"crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-utils.min.js"crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body oncontextmenu="return false;">
     <div class="warning" id="notifier"></div>
+    
     <div class="loader-wrap ym-hide-content" id="load-wrap">
         <div class="loader" id="loader">
             <div class="ball"></div>
@@ -63,6 +55,11 @@
                     <input type="text" id="address-input" placeholder="Введите адрес доставки">
                 </div>
                 <span class="close" id="close-address-modal">&times;</span>
+                <div id="user-location" style="transform: translate(6px, 2px);" class="">
+                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" style="width: 40px;height: 40px;border-radius: 6px;background-color: #45766a;">
+                        <path d="M4 21V18.5C4 15.4624 6.46243 13 9.5 13H13.5M8 21V18M16 6.5C16 8.70914 14.2091 10.5 12 10.5C9.79086 10.5 8 8.70914 8 6.5C8 4.29086 9.79086 2.5 12 2.5C14.2091 2.5 16 4.29086 16 6.5ZM22 15.5C22 17.9853 17.5 22 17.5 22C17.5 22 13 17.9853 13 15.5C13 13.0147 15.0147 11 17.5 11C19.9853 11 22 13.0147 22 15.5ZM19 15.5C19 16.3284 18.3284 17 17.5 17C16.6716 17 16 16.3284 16 15.5C16 14.6716 16.6716 14 17.5 14C18.3284 14 19 14.6716 19 15.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path>
+                    </svg>
+                </div>
             </div>
             <!-- <input type="text" id="address-input" placeholder="Введите улицу"> -->
             <div id="suggestions"></div>
@@ -241,15 +238,6 @@
         </span>
     </div>
     <script type="text/javascript">
-        function notify(title) {
-            var tmpClassName = notifier.className;
-            notifier.className = "warning show";
-            $("#notifier").text(title);
-            setTimeout(function() {
-                notifier.className = 'warning';
-            }, 1500);
-        }
-        
         const validParams = ["bot", "public"];
         const searchParams = new URLSearchParams(window.location.search);
         const filteredParams = {};
@@ -287,12 +275,12 @@
         } catch (error) {
             console.error('Ошибка запроса:', error);
             const errorMsg = "Упс, что-то пошло не так. Пожалуйста, откройте страницу «Оформить заказ» ещё раз.";
-            notify(errorMsg);
+            $("#error_load").text(errorMsg);
             throw error;  // Повторно выбрасываем ошибку для обработки на более высоком уровне
         }
     </script>
     
-    <script src='./public/js/app.min.js?v=172'></script>
+    <script src='./public/js/app.min.js?v=180'></script>
     <!-- Metrika counter --> 
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
