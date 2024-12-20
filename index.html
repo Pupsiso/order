@@ -291,7 +291,8 @@
         (function () {
             const originalConsoleError = console.error;
             console.error = function (...args) {
-                clarity('log', 'console-error', args.join(' '));
+                const message = args.join(' ');
+                clarity("set", "console-error", message);
                 originalConsoleError.apply(console, args);
             };
         })();
