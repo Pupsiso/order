@@ -11,9 +11,9 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="theme-color" content="#000000" />
     <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico"type="image/x-icon">
-    <link rel="stylesheet" href="./public/css/main.css?v=182">
-    <link rel="stylesheet" href="./public/css/style.min.css?v=182">
-    <link rel="stylesheet" href="./public/css/modal.css?v=182">
+    <link rel="stylesheet" href="./public/css/main.css?v=183">
+    <link rel="stylesheet" href="./public/css/style.min.css?v=183">
+    <link rel="stylesheet" href="./public/css/modal.css?v=183">
     <script src="./public/js/generate_uuid.js"></script>
     <link rel="preconnect" href="https://api-maps.yandex.ru">    
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
@@ -280,7 +280,7 @@
         }
     </script>
     
-    <script src='./public/js/app.min.js?v=1810'></script>
+    <script src='./public/js/app.min.js?v=183'></script>
     <!-- Metrika counter --> 
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
@@ -288,6 +288,14 @@
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "o24o6um2sc");
+        // Перехват console.error и отправка данных в Clarity
+        (function () {
+            const originalConsoleError = console.error;
+            console.error = function (...args) {
+                clarity('log', 'console-error', args.join(' ')); // Отправка лога в Clarity
+                originalConsoleError.apply(console, args);
+            };
+        })();
     </script>
     <!-- Metrika counter -->
 </body>
