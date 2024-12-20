@@ -288,11 +288,10 @@
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "o24o6um2sc");
-        // Перехват console.error и отправка данных в Clarity
         (function () {
             const originalConsoleError = console.error;
             console.error = function (...args) {
-                clarity('log', 'console-error', args.join(' ')); // Отправка лога в Clarity
+                clarity('log', 'console-error', args.join(' '));
                 originalConsoleError.apply(console, args);
             };
         })();
