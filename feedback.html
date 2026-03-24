@@ -6,7 +6,26 @@
     <link rel="shortcut icon" href="https://static.tildacdn.com/tild6363-3164-4632-b262-383437643039/favicon.ico" type="image/x-icon">
     <title>Telegram &amp; Способ доставки</title>
     <meta name="theme-color" content="#000000"/>
-    <script src="https://telegram.org/js/telegram-web-app.js" onerror="var s=document.createElement('script');s.src='https://api.edatg.ru/webhook/js/telegram-web-app.js';document.head.appendChild(s);"></script>
+    <script>
+        (function(){
+            var loaded = false;
+            var s1 = document.createElement('script');
+            s1.src = 'https://telegram.org/js/telegram-web-app.js';
+            s1.onload = function(){ loaded = true; };
+            s1.onerror = function(){ loadFallback(); };
+            document.head.appendChild(s1);
+            setTimeout(function(){
+                if (!loaded) { s1.remove(); loadFallback(); }
+            }, 3000);
+            function loadFallback(){
+                if (loaded) return;
+                loaded = true;
+                var s2 = document.createElement('script');
+                s2.src = 'https://api.edatg.ru/webhook/js/telegram-web-app.js';
+                document.head.appendChild(s2);
+            }
+        })();
+    </script>
     <script>window.Telegram.WebApp.ready()</script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/main.css?v=143">
